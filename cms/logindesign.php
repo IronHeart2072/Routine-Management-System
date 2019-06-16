@@ -2,8 +2,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <title>Login</title>
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css"/>
-        <link rel="stylesheet" href="assets/css/style.css" type="text/css"/>
+        <link rel="stylesheet" href="../assets/css/bootstrap.min.css" type="text/css"/>
+        <link rel="stylesheet" href="../assets/css/style.css" type="text/css"/>
     </head>
     <body >
 
@@ -57,7 +57,7 @@
                         <hr/>
                     </div>
 
-                    <form action="cms/login.php" method="post" autocomplete="off">
+                    <form action="login.php" method="post" autocomplete="off">
                             <div class="form-group">
                                 <div class="input-group">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
@@ -85,7 +85,7 @@
                             </div>
 
                             <div class="form-group">
-                                <a href="cms/signupdesign.php" type="button" class="btn btn-block btn-danger"
+                                <a href="signupdesign.php" type="button" class="btn btn-block btn-danger"
                                 name="btn-login">Register</a>
                             </div>
 
@@ -96,7 +96,7 @@
             </div>
         </div>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
     </body>
     </html>
     <?php
