@@ -1,0 +1,36 @@
+
+#login-form {
+	margin:15% auto;
+	max-width:400px;
+	font-family: sans-serif;
+	font-weight:400;
+	font-size: 16px;
+	line-height: 1.7;
+	color:ghostwhite;
+}
+/* home page */
+#wrapper{
+	padding-top:50px;
+}
+ 
+
+ *{
+	margin:0;
+	padding: 0;
+	box-sizing: border-box;
+} 
+
+body{
+	background-image: url("../image/calendar.jpg");
+	background-size: cover;
+}
+
+.container{
+	height: 95vh;
+	background-image: linear-gradient(to bottom left, rgba(32, 38, 38, 0.17), rgba(189, 193, 227, 0.54)),  
+	url("../image/alarmclockcalendar.jpg");
+	background-size:cover;
+	background-position: top;
+	clip-path: polygon(0% 20%, 100% 0%, 100% 80vh, 0% 100%);
+	opacity: 0.9;
+}
