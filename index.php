@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <title>Login</title>
@@ -57,7 +57,7 @@
                         <hr/>
                     </div>
 
-                    <form action="login.php" method="post" autocomplete="off">
+                    <form action="cms/login.php" method="post" autocomplete="off">
                             <div class="form-group">
                                 <div class="input-group">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
@@ -85,7 +85,7 @@
                             </div>
 
                             <div class="form-group">
-                                <a href="signupdesign.php" type="button" class="btn btn-block btn-danger"
+                                <a href="cms/signupdesign.php" type="button" class="btn btn-block btn-danger"
                                 name="btn-login">Register</a>
                             </div>
 
