@@ -33,7 +33,7 @@
                         // $_SESSION['Username']=$row['username'];
                         // $_SESSION['Password']=$row['password'];
      
-                        header("location:admindash.php?Well");
+                        header("location:home.php?Well");
                         exit();
                         
      
