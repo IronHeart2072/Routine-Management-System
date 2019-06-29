@@ -4,7 +4,7 @@
 var WTA = [];			//  Array to store Weekly Teacher Availability data
 var schedule = [];			// Array to store generated Schedule
 
-//	Function to convert Hours into Minutes
+//	Function to convert Hours and Minutes into Minutes
 function toMin(hour = 0,min = 0) 
 {
 	if (hour < 0 || hour > 24) 
@@ -21,6 +21,7 @@ function toMin(hour = 0,min = 0)
 	}
 }
 
+//	Function to convert Minutes into Hour and Minutes
 function fromMin(min = 0) 
 {
 	if (min < 0 || min > 60 * 24) 
@@ -48,15 +49,22 @@ function initWTA(unitDuration)
 
 	for (var i = startTime; i <= endTime; i++) 
 	{
-		count++;
-
 		if (count % unitDuration === 0) 
 		{
-			WTA.push(["Single Period"]);
-		}	
-	}
+			WTA.push(fromMin(i));
+		}
 
+		count++;	
+	}
 }
 
-console.log(fromMin(125));
+function displayWTA() 
+{
+	for (var i = 0; i < WTA.length; i++) 
+	{
+		console.log(WTA[i]); 
+	}
+}
+
 initWTA(45);
+displayWTA();
