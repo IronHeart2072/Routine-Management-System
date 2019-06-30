@@ -93,20 +93,20 @@ function isTeacherAvailable(eid,timeInstance)
 function updateWTA() 
 {
 	console.log("Function : updateWTA()");
-	
+
 	for (var i = 0; i < WTA.length; i++) 
 	{	
-		console.log("\t\tUpdating WTA element ",i)
+		console.log("\t\tUpdating WTA element ",i + 1,"/",WTA.length)
 		
 		for (var j = 0; j < teacherDB.length; j++) 
 		{
-			console.log("\t\t\tChecking teacherDB element ",j)	
+			console.log("\t\t\tChecking teacherDB element ",j + 1,"/",teacherDB.length)	
 	
 			var teacher = teacherDB[j];
 
 			for (var k = 0; k < teacher.freeTime.length; k++) 
 			{
-				console.log("\t\t\t\tChecking freeTime element ",k)	
+				console.log("\t\t\t\tChecking freeTime element ",k + 1,"/",teacher.freeTime.length)	
 			
 				if (isTeacherAvailable(teacher.eid,WTA[i].time)) 
 				{
