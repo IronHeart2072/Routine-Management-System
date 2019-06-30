@@ -50,13 +50,14 @@ class Teacher
 	//	<[T]> Function to add start and end time
 	addFreeTime(day,startHour,startMin,endHour,endMin) 
 	{
-		var timeInstance = {
+		/*var timeInstance = {
 							day : day,
 							startHour : startHour,
 							startMin : startMin,
 							endHour : endHour,
 							endMin : endMin
-							}
+							}*/
+		var timeInstance = new TimeInstance(day,startHour,startMin,endHour,endMin)
 		this.freeTime.push(timeInstance);
 	}
 

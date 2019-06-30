@@ -1,6 +1,5 @@
 //	Temporary entities due to the absence of DB are represented by :- <[T]>
 
-
 var WTA = [];			//  Array to store Weekly Teacher Availability data
 var schedule = [];			// Array to store generated Schedule
 
@@ -51,20 +50,46 @@ function initWTA(unitDuration)
 	{
 		if (count % unitDuration === 0) 
 		{
-			WTA.push(fromMin(i));
+			var wtaInstance = {
+								time : fromMin(i),
+								availableTeachers : []
+							  }
+			WTA.push(wtaInstance);
 		}
 
 		count++;	
 	}
 }
 
-function displayWTA() 
+function isTeacherAvailable(eid,timeInstance) 
 {
-	for (var i = 0; i < WTA.length; i++) 
+	for (var i = 0; i < teacherDB.length; i++) 
 	{
-		console.log(WTA[i]); 
+		if (eid === teacherDB[i].eid) 
+		{
+			var teacher = teacherDB[i];
+		}
+	}
+	
+	for (var j = 0; j < teacher.freeTime.length; j++) 
+	{
+		var ipStartTime = toMin(timeInstance.startHour,timeInstance.startMin);
+		var teacherStartTime = toMin(teacher.freeTime[j].startHour,teacher.freeTime[j].startMin);
+		var ipEndTime = toMin(timeInstance.endHour,timeInstance.endMin);
+		var teacherEndTime = toMin(teacher.freeTime[j].endHour,teacher.freeTime[j].endMin);
+	
+		if ((teacherStartTime <= ipStartTime) && (teacherEndTime >= ipEndTime)) 
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 }
 
 initWTA(45);
-displayWTA();
+
+var timeInst = new TimeInstance(0,7,0,8,30);
+isTeacherAvailable(1,timeInst);
