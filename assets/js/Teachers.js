@@ -64,15 +64,3 @@ class Teacher
 
 }
 
-var t1 = new Teacher(1,"KD");
-//t1.console();
-t1.addTeacher();
-t1.addFreeTime(0,7,00,8,30);
-
-var t2 = new Teacher(2,"MA");
-//t2.console();
-t2.addTeacher();
-t2.addFreeTime(0,7,30,8,30);
-
-	
-console.log('Teachers :- ',teacherDB);

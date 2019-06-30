@@ -50,12 +50,3 @@ class Course
 	}
 }
 
-var c1 = new Course(1,"Internet Technology",t1,6,0);
-//c1.console();
-c1.addCourse();
-
-var c2 = new Course(2,"Software Programming Methodology",t2,5,0);
-//c2.console();
-c2.addCourse();
-
-console.log('Courses :- ',courseDB);
