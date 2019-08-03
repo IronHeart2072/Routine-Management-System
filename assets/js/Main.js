@@ -1,3 +1,5 @@
+var currentUnit = 3;
+
 function start() 
 {
 	var t1 = new Teacher(1,"KD");
@@ -28,8 +30,14 @@ function start()
 	initWTA(45);
 
 	var timeInst = new TimeInstance(0,7,0,8,30);
-	isTeacherAvailable(1,timeInst);
+	//isTeacherAvailable(1,timeInst);
 
 	updateWTA();
+
+	console.log(c1.needsSchedulling());
+	//console.log(t1.getRemainingUnits(3));
+
+	schedule();
+	console.log(c1.getSlack());
 
 }

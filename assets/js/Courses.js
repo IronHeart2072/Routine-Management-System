@@ -48,5 +48,37 @@ class Course
 			alert("Course id already exists.");
 		}
 	}
+
+	getSlack()
+	{
+		console.log('\n\nFunction : getSlack()');
+
+		var totalUnits = this.teachers.getTotalUnits();
+		var remainingUnits = this.teachers.getRemainingUnits(currentUnit);
+		var totalClasses = this.totalNoOfClasses;
+		var classesTaken = this.noOfClassesTaken;
+
+		var slack = (totalUnits - remainingUnits) - (totalClasses - classesTaken);
+		console.log('\tSlack :- (',totalUnits,' - ',remainingUnits,') - (',totalClasses,' - ',classesTaken,') = ',slack)		
+		return slack;
+	}
+
+	//	Function to check if Course needs schedulling
+	needsSchedulling() 
+	{
+		console.log('\n\nFunction : needsSchedulling()');
+
+		if (this.noOfClassesTaken < this.totalNoOfClasses) 
+		{
+			console.log('\ttrue');
+			return true;
+		}	
+		else
+		{
+			console.log('\tfalse');
+			return false;
+		}
+	}
 }
+
 

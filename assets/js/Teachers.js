@@ -1,11 +1,12 @@
 //	Temporary entities due to the absence of DB are represented by :- <[T]>
 
-var teacherDB = [];			// Array to store data from Teacher DataBase 
+var teacherDB = [];			// Array to store data from Teacher DataBase000
+ 
 
 // Class : Teacher
 class Teacher
 {
-	constructor(eid,name,)
+	constructor(eid,name)
 	{
 		this.eid = eid;
 		this.name = name;
@@ -60,6 +61,84 @@ class Teacher
 		var timeInstance = new TimeInstance(day,startHour,startMin,endHour,endMin)
 		this.freeTime.push(timeInstance);
 	}
+
+	//	Function to check if a Teacher is available
+	isTeacherAvailable(timeInstance) 
+	{
+		for (var i = 0; i < teacherDB.length; i++) 
+		{
+			if (this.eid === teacherDB[i].eid) 
+			{
+				var teacher = teacherDB[i];
+			}
+		}
+		
+		for (var j = 0; j < teacher.freeTime.length; j++) 
+		{
+			var ipStartTime = toMin(timeInstance.startHour,timeInstance.startMin);
+			var teacherStartTime = toMin(teacher.freeTime[j].startHour,teacher.freeTime[j].startMin);
+			var ipEndTime = toMin(timeInstance.endHour,timeInstance.endMin);
+			var teacherEndTime = toMin(teacher.freeTime[j].endHour,teacher.freeTime[j].endMin);
+		
+			if ((teacherStartTime <= ipStartTime) && (teacherEndTime >= ipEndTime)) 
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+	}
+
+	getTotalUnits()
+	{
+		console.log('\n\nFunction : getTotalUnits()')
+		
+		var totalUnits = 0;
+
+		for (var i = 0; i < WTA.length; i++) 
+		{
+			for (var j = 0; j < WTA[i].availableTeachers.length; j++) 
+			{
+				console.log('\t Unit = ',i,' | TeacherDB index = ',j,' | Teacher eid = ',WTA[i].availableTeachers[j].eid);
+				
+				if (WTA[i].availableTeachers[j].eid === this.eid) 
+				{
+					totalUnits++; 
+					
+					console.log('\t\tTrue | totalUnits = ',totalUnits);
+				}
+			}
+		}
+
+		return totalUnits;
+	}
+	
+	getRemainingUnits(currentUnit)
+	{
+		console.log('\n\nFunction : getRemainingUnits(currentUnit = ',currentUnit,')')
+		
+		var remainingUnits = 0;
+
+		for (var i = currentUnit; i < WTA.length; i++) 
+		{
+			for (var j = 0; j < WTA[i].availableTeachers.length; j++) 
+			{
+				console.log('\t Unit = ',i,' | TeacherDB index = ',j,' | Teacher eid = ',WTA[i].availableTeachers[j].eid);
+				
+				if (WTA[i].availableTeachers[j].eid === this.eid) 
+				{
+					remainingUnits++; 
+					
+					console.log('\t\tTrue | remainingUnits = ',remainingUnits);
+				}
+			}
+		}
+
+		return remainingUnits;
+	}
+
 
 
 }

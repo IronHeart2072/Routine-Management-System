@@ -61,38 +61,10 @@ function initWTA(unitDuration)
 	}
 }
 
-//	Function to check if a Teacher is available
-function isTeacherAvailable(eid,timeInstance) 
-{
-	for (var i = 0; i < teacherDB.length; i++) 
-	{
-		if (eid === teacherDB[i].eid) 
-		{
-			var teacher = teacherDB[i];
-		}
-	}
-	
-	for (var j = 0; j < teacher.freeTime.length; j++) 
-	{
-		var ipStartTime = toMin(timeInstance.startHour,timeInstance.startMin);
-		var teacherStartTime = toMin(teacher.freeTime[j].startHour,teacher.freeTime[j].startMin);
-		var ipEndTime = toMin(timeInstance.endHour,timeInstance.endMin);
-		var teacherEndTime = toMin(teacher.freeTime[j].endHour,teacher.freeTime[j].endMin);
-	
-		if ((teacherStartTime <= ipStartTime) && (teacherEndTime >= ipEndTime)) 
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-}
 
 function updateWTA() 
 {
-	console.log("Function : updateWTA()");
+	console.log('\n\nFunction : updateWTA()');
 
 	for (var i = 0; i < WTA.length; i++) 
 	{	
@@ -108,7 +80,7 @@ function updateWTA()
 			{
 				console.log("\t\t\t\tChecking freeTime element ",k + 1,"/",teacher.freeTime.length)	
 			
-				if (isTeacherAvailable(teacher.eid,WTA[i].time)) 
+				if (teacher.isTeacherAvailable(WTA[i].time)) 
 				{
 					WTA[i].availableTeachers.push(teacher);
 				}
