@@ -1,5 +1,3 @@
-var currentUnit = 3;
-
 function start() 
 {
 	var t1 = new Teacher(1,"KD");

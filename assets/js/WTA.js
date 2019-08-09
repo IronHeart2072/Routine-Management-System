@@ -80,7 +80,7 @@ function updateWTA()
 			{
 				console.log("\t\t\t\tChecking freeTime element ",k + 1,"/",teacher.freeTime.length)	
 			
-				if (teacher.isTeacherAvailable(WTA[i].time)) 
+				if (teacher.isAvailable(WTA[i].time)) 
 				{
 					WTA[i].availableTeachers.push(teacher);
 				}
