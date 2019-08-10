@@ -75,6 +75,7 @@ function updateWTA()
 			console.log("\t\t\tChecking teacherDB element ",j + 1,"/",teacherDB.length)	
 	
 			var teacher = teacherDB[j];
+			console.log("\t\t\tteacher = ",teacher.name);		
 
 			for (var k = 0; k < teacher.freeTime.length; k++) 
 			{
@@ -83,6 +84,7 @@ function updateWTA()
 				if (teacher.isAvailable(WTA[i].time)) 
 				{
 					WTA[i].availableTeachers.push(teacher);
+					console.log("\t\t\t\tPushed ",teacher);		
 				}
 
 			}

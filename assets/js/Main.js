@@ -32,10 +32,10 @@ function start()
 
 	updateWTA();
 
-	console.log(c1.needsSchedulling());
+	//console.log(c1.needsSchedulling());
 	//console.log(t1.getRemainingUnits(3));
 
 	schedule();
-	console.log(c1.getSlack());
+	//console.log(c1.getSlack());
 
 }

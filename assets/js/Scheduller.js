@@ -16,8 +16,9 @@ function schedule()
 			{
 				if (courseDB[j].teachers.isAvailable(i)) 
 				{
-					//console.log('Slack of ',courseDB[j].name,' at unit ',i,' = ',courseDB[j].getSlack(courseDB[j].teachers));
+					console.log('Slack of ',courseDB[j].name,' at unit ',i,' = ',courseDB[j].getSlack(courseDB[j].teachers));
 					courseSlack.push(courseDB[j].getSlack(courseDB[j].teachers));
+					courseDB[j].noOfClassesTaken++;
 				}
 			}
 			

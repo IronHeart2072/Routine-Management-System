@@ -65,20 +65,34 @@ class Teacher
 	//	Function to check if a Teacher is available
 	isAvailable(timeInstance) 
 	{
+		//console.log('\n\nFunction : isAvailable(timeInstance)')
+		
 		var teacher = this;
-	
-		var ipStartTime = toMin(timeInstance.startHour,timeInstance.startMin);
-		var teacherStartTime = toMin(teacher.freeTime.startHour,teacher.freeTime.startMin);
-		var ipEndTime = toMin(timeInstance.endHour,timeInstance.endMin);
-		var teacherEndTime = toMin(teacher.freeTime.endHour,teacher.freeTime.endMin);
-	
-		if ((teacherStartTime <= ipStartTime) && (teacherEndTime >= ipEndTime)) 
+		console.log(this);
+		var ipTime = timeInstance;
+		var isAvailable = false;
+		
+		for (var i = 0; i < teacher.freeTime.length; i++) 
 		{
-			return true;
-		}
-		else
-		{
-			return false;
+			var ipStartTime = toMin(ipTime.startHour,ipTime.startMin);
+			var teacherStartTime = toMin(teacher.freeTime[i].startHour,teacher.freeTime[i].startMin);
+			var ipEndTime = toMin(ipTime.endHour,ipTime.endMin);
+			var teacherEndTime = toMin(teacher.freeTime[i].endHour,teacher.freeTime[i].endMin);
+			
+			console.log('i = ',i);
+			console.log('teacherStartTime = ',teacherStartTime,'ipStartTime = ',ipStartTime);
+			console.log('teacherEndTime = ',teacherEndTime,'ipEndTime = ',ipEndTime);
+
+			if ((teacherStartTime <= ipStartTime) && (teacherEndTime >= ipEndTime)) 
+			{
+				console.log('true');
+				return true;
+			}
+			else if (i = teacher.freeTime.length)
+			{
+				console.log('false');
+				return false;
+			}
 		}
 	}
 
@@ -90,19 +104,21 @@ class Teacher
 
 		for (var i = 0; i < WTA.length; i++) 
 		{
-			for (var j = 0; j < WTA[i].availableTeachers.length; j++) 
+			console.log('i = ',i,this.eid);
+			for (var j = 0; j <= WTA[i].availableTeachers.length; j++) 
 			{
+				//console.log('\tj = ',j,WTA[i].availableTeachers[j].eid);
 				//console.log('\t Unit = ',i,' | TeacherDB index = ',j,' | Teacher eid = ',WTA[i].availableTeachers[j].eid);
 				
 				if (WTA[i].availableTeachers[j].eid === this.eid) 
 				{
 					totalUnits++; 
 					
-					//console.log('\t\tTrue | totalUnits = ',totalUnits);
 				}
 			}
 		}
-
+		console.log('\t\tTrue | totalUnits = ',totalUnits);
+				
 		return totalUnits;
 	}
 	
