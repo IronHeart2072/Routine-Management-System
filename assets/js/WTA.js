@@ -51,6 +51,7 @@ function initWTA(unitDuration)
 		{
 			var timeInstance = new TimeInstance(0,fromMin(i)[0],fromMin(i)[1],fromMin(i + unitDuration)[0],fromMin(i + unitDuration)[1]);
 			var wtaInstance = {
+								isEmpty : true,
 								time : timeInstance,
 								availableTeachers : []
 							  }
@@ -84,6 +85,7 @@ function updateWTA()
 				if (teacher.isAvailable(WTA[i].time)) 
 				{
 					WTA[i].availableTeachers.push(teacher);
+					WTA[i].availableTeachers.isEmpty = false;
 					console.log("\t\t\t\tPushed ",teacher);		
 				}
 

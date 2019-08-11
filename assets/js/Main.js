@@ -28,14 +28,31 @@ function start()
 	initWTA(45);
 
 	var timeInst = new TimeInstance(0,7,0,8,30);
-	//isTeacherAvailable(1,timeInst);
+	//isAvailable(timeInst);
 
 	updateWTA();
 
 	//console.log(c1.needsSchedulling());
 	//console.log(t1.getRemainingUnits(3));
 
+	initRoutine();
 	schedule();
 	//console.log(c1.getSlack());
 
+}
+
+function test1() 
+{
+	for (var i = 0; i < teacherDB.length; i++) 
+	{
+		var teacher = teacherDB[i];
+		console.log('\n\tTeacher = ',teacher);
+		for (var j = 0; j < WTA.length; j++) 
+		{
+			console.log('\tWTA Unit = ',j);
+			console.log('\tisAvailable = ',teacher.isAvailable(WTA[j].time));
+		}
+	
+	}
+	
 }

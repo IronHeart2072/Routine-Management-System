@@ -13,12 +13,6 @@ class Teacher
 		this.freeTime = [];
 	}
 
-	console()
-	{
-		//console.log(this);
-	}
-
-	
 	//	<[T]> Function to check wether an Object of teacher class already exists in TeacherDB
 	isTeacherExist()
 	{
@@ -68,7 +62,7 @@ class Teacher
 		//console.log('\n\nFunction : isAvailable(timeInstance)')
 		
 		var teacher = this;
-		console.log(this);
+		//console.log(this);
 		var ipTime = timeInstance;
 		var isAvailable = false;
 		
@@ -79,18 +73,18 @@ class Teacher
 			var ipEndTime = toMin(ipTime.endHour,ipTime.endMin);
 			var teacherEndTime = toMin(teacher.freeTime[i].endHour,teacher.freeTime[i].endMin);
 			
-			console.log('i = ',i);
-			console.log('teacherStartTime = ',teacherStartTime,'ipStartTime = ',ipStartTime);
-			console.log('teacherEndTime = ',teacherEndTime,'ipEndTime = ',ipEndTime);
+			//console.log('i = ',i);
+			//console.log('teacherStartTime = ',teacherStartTime,'ipStartTime = ',ipStartTime);
+			//console.log('teacherEndTime = ',teacherEndTime,'ipEndTime = ',ipEndTime);
 
 			if ((teacherStartTime <= ipStartTime) && (teacherEndTime >= ipEndTime)) 
 			{
-				console.log('true');
+				//console.log('true');
 				return true;
 			}
-			else if (i = teacher.freeTime.length)
+			else if (i == teacher.freeTime.length)
 			{
-				console.log('false');
+				//console.log('false');
 				return false;
 			}
 		}
@@ -104,20 +98,19 @@ class Teacher
 
 		for (var i = 0; i < WTA.length; i++) 
 		{
-			console.log('i = ',i,this.eid);
-			for (var j = 0; j <= WTA[i].availableTeachers.length; j++) 
+			if (!WTA[i].isEmpty) 
 			{
-				//console.log('\tj = ',j,WTA[i].availableTeachers[j].eid);
-				//console.log('\t Unit = ',i,' | TeacherDB index = ',j,' | Teacher eid = ',WTA[i].availableTeachers[j].eid);
-				
-				if (WTA[i].availableTeachers[j].eid === this.eid) 
+				for (var j = 0; j <= WTA[i].availableTeachers.length; j++) 
 				{
-					totalUnits++; 
-					
+					if (WTA[i].availableTeachers[j].eid === this.eid) 
+					{
+						totalUnits++; 
+						
+					}
 				}
 			}
 		}
-		console.log('\t\tTrue | totalUnits = ',totalUnits);
+		//console.log('\t\tTrue | totalUnits = ',totalUnits);
 				
 		return totalUnits;
 	}
