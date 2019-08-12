@@ -1,12 +1,24 @@
-var timetable = new Timetable();
+function displayRoutine() 
+{
+	var timetable = new Timetable();
 
-timetable.setScope(5,18);
+	timetable.setScope(6,14)
 
-timetable.addLocations(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']);
+	timetable.addLocations(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']);
 
-timetable.addEvent('Keshav Dhami', 'Sunday', new Date(2019,9,7,7,00), new Date(2019,9,7,8,30), { url: '#' });
-timetable.addEvent('Manish Aryal', 'Sunday', new Date(2015,9,7,8,30), new Date(2015,9,7,10,00), { class: 'vip-only' });
+	var day = 'Sunday';
 
+	for (var i = 0; i < routine.length; i++) 
+	{
+		if (routine[i].course.cid != undefined) 
+		{
+			timetable.addEvent(routine[i].course.name, day, new Date(2019,9,7,routine[i].time.startHour,routine[i].time.startMin), new Date(2019,9,7,routine[i].time.endHour,routine[i].time.endMin), { url: '#' });
+		}
 
-var renderer = new Timetable.Renderer(timetable);
-renderer.draw('.timetable');
+	}
+
+//	timetable.addEvent(routine[2].course.name, day, new Date(2019,9,7,routine[2].time.startHour,routine[2].time.startMin), new Date(2019,9,7,routine[2].time.endHour,routine[2].time.endMin), { url: '#' });
+
+	var renderer = new Timetable.Renderer(timetable);
+	renderer.draw('.timetable');
+}

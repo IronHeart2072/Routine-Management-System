@@ -81,7 +81,7 @@ class Course
 		/*var deadline = totalUnits - remainingUnits;
 		var 
 */
-		var slack = (totalUnits - remainingUnits) - (totalClasses - classesTaken);
+		var slack = -1 * ((totalUnits - remainingUnits) - (totalClasses - classesTaken));
 		console.log('\tSlack :- (',totalUnits,' - ',remainingUnits,') - (',totalClasses,' - ',classesTaken,') = ',slack)		
 		return slack;
 	}

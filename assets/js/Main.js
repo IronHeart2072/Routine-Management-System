@@ -27,7 +27,7 @@ function start()
 
 	initWTA(45);
 
-	var timeInst = new TimeInstance(0,7,0,8,30);
+	//var timeInst = new TimeInstance(0,7,0,8,30);
 	//isAvailable(timeInst);
 
 	updateWTA();
@@ -37,6 +37,8 @@ function start()
 
 	initRoutine();
 	schedule();
+	displayRoutine(); 
+
 	//console.log(c1.getSlack());
 
 }
