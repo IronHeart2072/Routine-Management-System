@@ -25,6 +25,7 @@ if(@$_SESSION['user_id']){
 				return $rowCount;
 			}
 		}
+		
 
    function add_teacher($user_id,$code,$name){
    			$db_connection = new dbConnection();
@@ -113,7 +114,7 @@ if(@$_SESSION['user_id']){
 
 				<!-- Text input-->
 				<div class="form-group">
-				  <label class="col-md-4 control-label" for="name">Day</label>  
+				  <label class="col-md-4 control-label" for="name">Days</label>  
 				  <div class="col-md-8">				  	
 					  <label ><input type="checkbox" id="sun" class="checkbox-inline" name="days"  /> Sun</label>
 					  <label ><input type="checkbox" id="mon" class="checkbox-inline" name="days"  /> Mon</label>
