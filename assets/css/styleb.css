@@ -1,0 +1,54 @@
+.btn-login {background-color: transparent; color: #FFF; border: 1px solid #CCC;}
+
+.clock {
+    position: absolute;
+        top: 10%;
+    left: 14%;
+    transform: translateX(-50%) translateY(-50%);
+    color: #FFF;
+    font-size: 30px;
+    letter-spacing: 7px;
+   
+
+
+}
+
+#back {
+    background-image: url(../img/login.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+#back .container-fluid {
+    height: 100vh;position: relative;
+}
+
+
+#back h1 {color: #FFF;text-align: center;margin-bottom: 50px;
+    font-size: 62px;font-family: 'Quicksand', sans-serif;
+}
+
+#form.login {
+    width: 30%;right: 6%;
+    background-color: transparent;
+    border: transparent;
+    position: absolute;
+    top: 24%;
+}
+
+#form.login .form-horizontal .form-group {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+#form.login .btn {
+    width: 100%;    margin-top: 16px;
+}
+
+#form.login span {
+    color: #FFF;
+}
+
+#content.register {height: 100vh;}
