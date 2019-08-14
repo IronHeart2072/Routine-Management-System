@@ -1,7 +1,7 @@
 <?php
 	class dbConnection{
 		protected $db_conn;
-		public $db_name = 'timetable';
+		public $db_name = 'v1.1';
 		public $db_user = 'root';
 		public $db_pass = '';
 		public $db_host = 'localhost';
