@@ -35,7 +35,7 @@ function fromMin(min = 0)
 //	Function to initialise WTA
 function initWTA(unitDuration) 
 {
-	var dayStartHour = 6;
+	var dayStartHour = 7;
 	var dayStartMin = 0;
 	var dayEndHour = 14;
 	var dayEndMin = 0;
