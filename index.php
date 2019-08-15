@@ -27,7 +27,7 @@
 					$_SESSION['name'] = $userSessions['username'];
 					if(isset($_SESSION['name']))
 					{
-						header("location: ../dashboard/dashboard.php");
+						header("location: dashboard/dashboard.php");
 					}
 				}
 		}
