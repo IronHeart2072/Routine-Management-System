@@ -45,20 +45,23 @@ function initWTA(unitDuration)
 
 	let count = 0;
 
-	for (var i = startTime; i <= endTime; i++) 
+	for (var i = 0; i < 7; i++) 
 	{
-		if (count % unitDuration === 0) 
+		for (var j = startTime; j <= endTime; j++) 
 		{
-			var timeInstance = new TimeInstance(0,fromMin(i)[0],fromMin(i)[1],fromMin(i + unitDuration)[0],fromMin(i + unitDuration)[1]);
-			var wtaInstance = {
-								isEmpty : true,
-								time : timeInstance,
-								availableTeachers : []
-							  }
-			WTA.push(wtaInstance);
-		}
+			if (count % unitDuration === 0) 
+			{
+				var timeInstance = new TimeInstance(i,fromMin(j)[0],fromMin(j)[1],fromMin(j + unitDuration)[0],fromMin(j + unitDuration)[1]);
+				var wtaInstance = {
+									isEmpty : true,
+									time : timeInstance,
+									availableTeachers : []
+								  }
+				WTA.push(wtaInstance);
+			}
 
-		count++;	
+			count++;	
+		}
 	}
 }
 

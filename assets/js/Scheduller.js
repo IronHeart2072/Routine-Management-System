@@ -32,7 +32,7 @@ function schedule()
 		{	
 			if (courseDB[j].needsSchedulling())	//	Checking if the Course needs schedulling 
 			{
-				console.log('\t',courseDB[j].name,'needs schedulling.');
+				console.log('\t',courseDB[j].name,' needs schedulling.');
 			/*
 				for (var k = 0; k < courseDB[j].teachers.length; k++) 
 				{

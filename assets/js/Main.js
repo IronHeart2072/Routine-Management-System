@@ -13,7 +13,14 @@ function start()
 
 	var t3 = new Teacher(3,"AS");
 	t3.addTeacher();
-	t3.addFreeTime(0,9,30,11,00);
+	t3.addFreeTime(1,9,30,11,00);
+	t3.addFreeTime(5,7,30,11,00);
+	
+	var t4 = new Teacher(4,"IC");
+	t4.addTeacher();
+	t4.addFreeTime(2,9,30,11,00);
+	t4.addFreeTime(5,7,30,13,00);
+
 		
 	console.log('Teachers :- ',teacherDB);
 
@@ -29,6 +36,10 @@ function start()
 	var c3 = new Course(3,"Advanced Java Programming",t3,5,0);
 	//c2.console();
 	c3.addCourse();
+	
+	var c4 = new Course(4,"ADBMS",t4,5,0);
+	//c2.console();
+	c4.addCourse();
 
 	console.log('Courses :- ',courseDB);
 

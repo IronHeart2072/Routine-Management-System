@@ -77,7 +77,7 @@ class Teacher
 			//console.log('teacherStartTime = ',teacherStartTime,'ipStartTime = ',ipStartTime);
 			//console.log('teacherEndTime = ',teacherEndTime,'ipEndTime = ',ipEndTime);
 
-			if ((teacherStartTime <= ipStartTime) && (teacherEndTime >= ipEndTime)) 
+			if ((ipTime.day === teacher.freeTime[i].day) && (teacherStartTime <= ipStartTime) && (teacherEndTime >= ipEndTime)) 
 			{
 				//console.log('true');
 				return true;
