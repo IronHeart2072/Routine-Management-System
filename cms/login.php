@@ -9,51 +9,35 @@
 			<fieldset>
 
 			<!-- Form Name -->
-			<legend>Register Here</legend>
+			<legend><a href="../index.php"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a></legend>
 			
 			<!-- Text input-->
 			<div class="form-group">
-			  <label class="col-md-4 control-label" for="username">Collage Name</label>  
-			  <div class="col-md-4">
-			  <input id="uname" name="uname" type="text" placeholder="" class="form-control input-md" required="">
+			  <input id="uname" name="uname" type="text" placeholder="College Name" class="form-control input-md" required="">
 				
-			  </div>
 			</div>
 
 			<!-- Text input-->
 			<div class="form-group">
-			  <label class="col-md-4 control-label" for="username">Username</label>  
-			  <div class="col-md-4">
-			  <input id="username" name="username" type="text" placeholder="" class="form-control input-md" required="">
+			  <input id="username" name="username" type="text" placeholder="Username" class="form-control input-md" required="">
 				
-			  </div>
 			</div>
 
 			<!-- Text input-->
 			<div class="form-group">
-			  <label class="col-md-4 control-label" for="email">Email</label>  
-			  <div class="col-md-4">
-			  <input id="email" name="email" type="text" placeholder="" class="form-control input-md" required="">
+			  <input id="email" name="email" type="text" placeholder="E-Mail" class="form-control input-md" required="">
 				
-			  </div>
 			</div>
 
 			<!-- Password input-->
 			<div class="form-group">
-			  <label class="col-md-4 control-label" for="password">Password</label>
-			  <div class="col-md-4">
-				<input id="password" name="password" type="password" placeholder="" class="form-control input-md" required="">
+				<input id="password" name="password" type="password" placeholder="Password" class="form-control input-md" required="">
 				
-			  </div>
 			</div>
 
 			<!-- Button -->
-			<div class="form-group">
-			  <label class="col-md-4 control-label" for="register"></label>
-			  <div class="col-md-4">
-				<input type="submit" id="register" name="register" class="btn btn-success" value="Register">
-			  </div>
-			</div>
+				<input type="submit" id="register" name="register" class="btn btn-login" value="Register">
+
 
 			</fieldset>
 		</form>
