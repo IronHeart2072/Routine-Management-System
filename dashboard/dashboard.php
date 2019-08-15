@@ -82,21 +82,20 @@ document.oncontextmenu=new Function("return false")
 
 </SCRIPT>   
 <body>
-<div class="container"> 
+<div class="container-fluid"> 
   <div class="row">
-    <div class="col-lg-6" >
-    	<div class="jumbotron">
-			<p class="text-center">You first need to Add Subjects, Faculty, Course.</p>				
+    <div class="col-lg-4" >
+    	<div class="jumbotron">		
 			<form class="form-horizontal" method="post" action="">
 			<fieldset>
 
 			<!-- Form Name -->
-			<legend class="text-center">Generate Schedule</legend>
+			<legend>Generate Schedule</legend>
 			
 			<!-- Select Basic -->
 			<div class="form-group">
-			  <label class="col-md-4 control-label" for="Course">Course Name</label>
-			  <div class="col-md-8">
+			  <label class="control-label" for="Course">Course Name</label>
+			  
 				<select id="coursefullname" name="coursefullname" class="form-control" required="">
 				<?php
 				// lists the course on drop down button course
@@ -109,22 +108,18 @@ document.oncontextmenu=new Function("return false")
 				  
 				</select>
 				
-			  </div>
 			</div>
 
 			<!-- Text input-->
 			<div class="form-group">
-			  <label class="col-md-4 control-label" for="year">Year / Session</label>  
-			  <div class="col-md-8">
+			  <label class="control-label" for="year">Year / Session</label>  
 			  <input id="year" name="year" type="text" placeholder="" class="form-control input-md" required="">
 			  <span class="help-block">Write Year e.g 2015-2016</span>  
-			  </div>
 			</div>
 
 			<!-- Select Basic -->
 			<div class="form-group">
-			  <label class="col-md-4 control-label" for="semester">Select Semester</label>
-			  <div class="col-md-8">
+			  <label class="control-label" for="semester">Select Semester</label>
 				<select id="semester" name="semester" class="form-control" required="">
 				  <option value="one">1</option>
 				  <option value="two">2</option>
@@ -135,13 +130,11 @@ document.oncontextmenu=new Function("return false")
 				  <option value="seven">7</option>
 				  <option value="eight">8</option>
 				</select>
-			  </div>
 			</div>
 
 			<!-- Select Basic -->
 			<div class="form-group">
-			  <label class="col-md-4 control-label" for="Course">Course Code</label>
-			  <div class="col-md-8">
+			  <label class="control-label" for="Course">Course Code</label>
 				<select id="Coursecode" name="Coursecode" class="form-control" required="">
 				<?php
 				// lists the course on drop down button course
@@ -154,15 +147,12 @@ document.oncontextmenu=new Function("return false")
 				  
 				</select>
 				<span class="help-block">course, semester, section</span>  
-			  </div>
 			</div>
 
 			<!-- Button -->
 			<div class="form-group">
-			  <label class="col-md-4 control-label" for="generate"></label>
-			  <div class="col-md-4">
 				<input type="submit" id="generate" name="generate" class="btn btn-success" value="Create Schedule">
-				</div>
+
 			</div>
 
 			</fieldset>
@@ -170,10 +160,9 @@ document.oncontextmenu=new Function("return false")
 
 		</div>
     </div>
-    <div class="col-lg-6">
-		<div class="jumbotron">
+    <div class="col-lg-8">
 		<?php include_once("timetable.list.php"); ?>
-		</div>
+
     </div>
   </div>
   

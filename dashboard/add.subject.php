@@ -75,9 +75,9 @@ else{
 ?>
 
 
-<div class="container"> 
+<div class="container-fluid"> 
   <div class="row">
-    <div class="col-lg-6">
+    <div class="col-lg-4">
 		<div class="jumbotron">
 
 				<form class="form-horizontal" method= "post" action="">
@@ -88,63 +88,59 @@ else{
 
 				<!-- Text input-->
 				<div class="form-group">
-				  <label class="col-md-4 control-label" for="subcode">Subject Code</label>  
-				  <div class="col-md-8">
+				  <label class="control-label" for="subcode">Subject Code</label>  
+
 				  <input id="subcode" name="subcode" type="text" placeholder="" class="form-control input-md" required="">
-					
-				  </div>
+
 				</div>
 
 				<!-- Text input-->
 				<div class="form-group">
-				  <label class="col-md-4 control-label" for="name">Subject Name</label>  
-				  <div class="col-md-8">
+				  <label class="control-label" for="name">Subject Name</label>  
+
 				  <input id="name" name="name" type="text" placeholder="" class="form-control input-md" required="">
-					
-				  </div>
+
 				</div>
 
 				<!-- Text input-->
 				<div class="form-group">
-				  <label class="col-md-4 control-label" for="l">Total Lecture</label>  
-				  <div class="col-md-8">
+				  <label class="control-label" for="l">Total Lecture</label>  
+
 				  <input id="l" name="l" type="text" placeholder="L" class="form-control input-md" required="">
 				  <span class="help-block">Total lecture for this subject</span>  
-				  </div>
+
 				</div>
 
 				<!-- Text input-->
 				<div class="form-group">
-				  <label class="col-md-4 control-label" for="t">Total Tutorial</label>  
-				  <div class="col-md-8">
+				  <label class="control-label" for="t">Total Tutorial</label>  
+
 				  <input id="t" name="t" type="text" placeholder="T" class="form-control input-md" required="">
 				  <span class="help-block">Total tutorial for this subject</span>  
-				  </div>
+
 				</div>
 
 				<!-- Text input-->
 				<div class="form-group">
-				  <label class="col-md-4 control-label" for="p">Total Practical</label>  
-				  <div class="col-md-8">
+				  <label class="control-label" for="p">Total Practical</label>  
+
 				  <input id="p" name="p" type="text" placeholder="P" class="form-control input-md" required="">
-				  <span class="help-block">Total Practical for this subject</span>  
-				  </div>
+
 				</div>
 
 				<!-- Button -->
 				<div class="form-group">
-				  <label class="col-md-4 control-label" for="submit"></label>
-				  <div class="col-md-4">
+				  <label class="control-label" for="submit"></label>
+
 					<button id="submit" name="submit" class="btn btn-primary">Add Subject</button>
-				  </div>
+
 				</div>
 
 				</fieldset>
 				</form>
 		</div>		
     </div>
-    <div class="col-lg-6">
-		<div class="jumbotron">
+    <div class="col-lg-8">
 		<?php
 			if($_SESSION['user_id']){
 				
@@ -171,7 +167,7 @@ else{
 					
 					echo
 						  "<h2>List of Subjects Already Added</h2>".          
-						  "<table class='table'>".
+						  "<table class='table table-bordered'>".
 							"<thead>".
 							  "<tr>".
 							   "<th>Subject Id</th>".
@@ -210,7 +206,6 @@ else{
 			}
 		?>
 		
-		</div>
     </div>
   </div>
   

@@ -75,9 +75,9 @@ else{
 ?>
 
 
-<div class="container"> 
+<div class="container-fluid"> 
   <div class="row">
-    <div class="col-lg-6">
+    <div class="col-lg-4">
 		<div class="jumbotron">
 
 				<form class="form-horizontal" method= "post" action="">
@@ -88,54 +88,51 @@ else{
 
 				<!-- Text input-->
 				<div class="form-group">
-				  <label class="col-md-4 control-label" for="name">Faculty Code</label>  
-				  <div class="col-md-8">
+				  <label class="control-label" for="name">Faculty Code</label>  
+
 				  <input id="fcode" name="fcode" type="text" placeholder="" class="form-control input-md" required="">
-					
-				  </div>
+
 				</div>
 				
 				<!-- Text input-->
 				<div class="form-group">
-				  <label class="col-md-4 control-label" for="name">Faculty Name</label>  
-				  <div class="col-md-8">
+				  <label class="control-label" for="name">Faculty Name</label>  
+
 				  <input id="name" name="name" type="text" placeholder="" class="form-control input-md" required="">
-					
-				  </div>
+
 				</div>
 
 				<!-- Text input-->
 				<div class="form-group">
-				  <label class="col-md-4 control-label" for="l">Designation</label>  
-				  <div class="col-md-8">
+				  <label class="control-label" for="l">Designation</label>  
+	
 				  <input id="d" name="d" type="text" placeholder="" class="form-control input-md" required="">
 				  <span class="help-block"></span>  
-				  </div>
+
 				</div>
 
 				<!-- Text input-->
 				<div class="form-group">
-				  <label class="col-md-4 control-label" for="t">Qualification</label>  
-				  <div class="col-md-8">
+				  <label class="control-label" for="t">Qualification</label>  
+
 				  <input id="q" name="q" type="text" placeholder="" class="form-control input-md" required="">
 				  <span class="help-block"></span>  
-				  </div>
+
 				</div>
 
 				<!-- Button -->
 				<div class="form-group">
-				  <label class="col-md-4 control-label" for="submit"></label>
-				  <div class="col-md-8">
+				  <label class="control-label" for="submit"></label>
+
 					<button id="submit" name="submit" class="btn btn-primary">Add Faculty</button>
-				  </div>
+
 				</div>
 
 				</fieldset>
 				</form>
 		</div>		
     </div>
-    <div class="col-lg-6">
-		<div class="jumbotron">
+    <div class="col-lg-8">
 		<?php
 			if($_SESSION['user_id']){
 				
@@ -162,7 +159,7 @@ else{
 					
 					echo
 						  "<h2>List of Faculty Already Added</h2>".          
-						  "<table class='table'>".
+						  "<table class='table table-bordered'>".
 							"<thead>".
 							  "<tr>".
 								"<th>Faculty Id</th>".
@@ -199,7 +196,6 @@ else{
 			}
 		?>
 		
-		</div>
     </div>
   </div>
   
