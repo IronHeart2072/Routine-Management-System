@@ -124,7 +124,7 @@ else{
 				<div class="form-group">
 				  <label class="control-label" for="submit"></label>
 
-					<button id="submit" name="submit" class="btn btn-primary">Add Faculty</button>
+					<button id="submit" name="submit" class="btn btn-success">Add Faculty</button>
 
 				</div>
 
