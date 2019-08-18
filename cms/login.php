@@ -9,7 +9,7 @@
 			<fieldset>
 
 			<!-- Form Name -->
-			<legend><a href="../index.php"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a></legend>
+			<legend><a href="../index.php"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a><span>Registration Form</span></legend>
 			
 			<!-- Text input-->
 			<div class="form-group">
