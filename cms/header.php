@@ -10,10 +10,12 @@
 	<script src="script.js"></script>
 	<script src="table.js"></script>  -->
 	<script src="assets/js/script.js"></script>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<!-- Optional theme -->
 	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<script src="../assets/js/bootstrap.min.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
 	
 	<link rel="stylesheet" type="text/css" href="assets/css/styleone.css">
 	<link rel="stylesheet" type="text/css" href="../assets/css/styleone.css">
