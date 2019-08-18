@@ -1,6 +1,8 @@
 html,body {background-color: #efefef;height: 100%;}
 .btn-login {background-color: transparent; color: #FFF; border: 1px solid #CCC;}
 
+.btn-success {background-color: #288628;border-color: #0e4e0e;}
+
 .clock {
     position: absolute;
         top: 10%;
@@ -13,6 +15,8 @@ html,body {background-color: #efefef;height: 100%;}
 
 
 }
+
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {color: #FFF;background-color: #1a2c52;}
 
 #back {
     background-image: url(../img/login.jpg);
@@ -48,6 +52,8 @@ html,body {background-color: #efefef;height: 100%;}
     width: 100%;    margin-top: 16px;
 }
 
+#form.login .btn:hover, #content.register #form .btn:hover {background-color: #FFF;color: #393939;}
+
 #form.login span {
     color: #FFF;
 }
@@ -58,13 +64,18 @@ html,body {background-color: #efefef;height: 100%;}
 #content.register #form form .form-group {margin-left: 0;margin-right: 0;}
 #content.register legend {padding-bottom: 12px;}
 #content.register legend a {color: #CCC;}
+#content.register legend>span {display: inline-block;width: 92%;text-align: center;color: #FFF;}
 
-.navbar-default {background-color: #029de6;border-color: transparent;border-radius: 0;margin-bottom: 0px;}
+.navbar-default {background-color:#3b5998;border-color: transparent;border-radius: 0;margin-bottom: 0px;}
 .navbar-default .navbar-nav>li>a {color: #FFF;}
 
 .jumbotron {    background-color: #3e3e3e;color: #FFF;padding: 30px;border-radius: 0px !important;margin-bottom: 0px;    margin-top: 25px;}
 .jumbotron legend {color: #FFF;}
 .jumbotron .form-group {margin-left: 0px;margin-right: 0px;}
 
-.table-bordered thead {background-color: #029de6;color: #FFF;}
+.table-bordered thead {background-color:#3b5998;color: #FFF;}
 .table-bordered tbody {background-color: #FFF;}
+
+
+/*#form.login .form-control {    background-color: transparent;border: none;border-bottom: 1px solid #ccc;border-radius: 0;color: #FFF;}
+#form.login .form-control:focus {box-shadow: ;}*/
