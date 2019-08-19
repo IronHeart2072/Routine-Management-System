@@ -1,85 +1,117 @@
 <?php 
+   session_start();
    $path = $_SERVER['DOCUMENT_ROOT'];
-   include_once("cms/header.php");
-?>
-<body>
-	<nav class="navbar navbar-default navbar-static-top">
-	  <div class="container">
-	  <h3>Routine Generator</h3>
-	  </div>
-	</nav>
+   include_once("cms/header.php"); 
+
+   $path = $_SERVER['DOCUMENT_ROOT'];
+   include_once("cms/class.ManageUsers.php");
+   
+   $users = new ManageUsers();
+   
+   
+   if(isset($_POST['lgn']))
+	{
+		$username = $_POST['username'];
+		$password = $_POST['password'];
+		
+		$count = $users->LoginUsers($username, $password);
+		if($count ==0)
+		{
+			echo "You are not yet Registered";
+		}
+		else if($count == 1)
+		{
+			$make_sessions = $users->GetUserInfo($username);
+				foreach($make_sessions as $userSessions)
+				{
+					$_SESSION['name'] = $userSessions['username'];
+					if(isset($_SESSION['name']))
+					{
+						header("location: dashboard/dashboard.php");
+					}
+				}
+		}
+		
+	}
 	
-	<div id="content">
-		<div id="form">
-		<form class="form-horizontal" method="post" action="cms/register.php">
-			<fieldset>
+	
+?>
 
-			<!-- Form Name -->
-			<legend>Register Here</legend>
-			
-			<!-- Text input-->
-			<div class="form-group">
-			  <label class="col-md-4 control-label" for="username">Collage Name</label>  
-			  <div class="col-md-4">
-			  <input id="uname" name="uname" type="text" placeholder="" class="form-control input-md" required="">
-				
-			  </div>
-			</div>
+<body id="back">
 
-			<!-- Text input-->
-			<div class="form-group">
-			  <label class="col-md-4 control-label" for="username">Username</label>  
-			  <div class="col-md-4">
-			  <input id="username" name="username" type="text" placeholder="" class="form-control input-md" required="">
-				
-			  </div>
-			</div>
 
-			<!-- Text input-->
-			<div class="form-group">
-			  <label class="col-md-4 control-label" for="email">Email</label>  
-			  <div class="col-md-4">
-			  <input id="email" name="email" type="text" placeholder="" class="form-control input-md" required="">
-				
-			  </div>
-			</div>
+    <div class="container-fluid">
+        <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
+        <div id="form" class="login">
+            <form class="form-horizontal" method="post" action="">
+                <fieldset>
 
-			<!-- Password input-->
-			<div class="form-group">
-			  <label class="col-md-4 control-label" for="password">Password</label>
-			  <div class="col-md-4">
-				<input id="password" name="password" type="password" placeholder="" class="form-control input-md" required="">
-				
-			  </div>
-			</div>
+                    <!-- Form Name -->
+                    <h1>Welcome</h1>
 
-			<!-- Button -->
-			<div class="form-group">
-			  <label class="col-md-4 control-label" for="register"></label>
-			  <div class="col-md-4">
-				<input type="submit" id="register" name="register" class="btn btn-success" value="Register">
-			  </div>
-			</div>
+                    <!-- Text input-->
+                    <div class="form-group">
 
-			</fieldset>
-		</form>
-		</div>
-		<div id="login">
-		Already Registered. <a href="cms/login.php">Login </a>
-		</div>
-	</div>
-			
-	<script type="text/javascript">
-		console.log("					<?php
-						echo $path;
-					?>
-			");
-	</script>			
+                        <input id="username" name="username" type="text" placeholder="Username" class="form-control input-md" required=""  aria-describedby="basic-addon1">
 
+                    </div>
+
+                    <!-- Password input-->
+                    <div class="form-group">
+                        <input id="password" name="password" type="password" placeholder="Password" class="form-control input-md" required="">
+
+                    </div>
+
+                    <!-- Button -->
+                    <div class="form-group">
+                        <input type="submit" name="lgn" class="btn btn-login" value="Login">
+
+                    </div>
+
+                </fieldset>
+                <span>
+                        Are you new? <a href="cms/login.php">Register</a>
+                    </span>
+            </form>
+        </div>
+    </div>
 
 </body>
+
+<script type="text/javascript">
+    function showTime() {
+        var date = new Date();
+        var h = date.getHours(); // 0 - 23
+        var m = date.getMinutes(); // 0 - 59
+        var s = date.getSeconds(); // 0 - 59
+        var session = "AM";
+
+        if (h == 0) {
+            h = 12;
+        }
+
+        if (h > 12) {
+            h = h - 12;
+            session = "PM";
+        }
+
+        h = (h < 10) ? "0" + h : h;
+        m = (m < 10) ? "0" + m : m;
+        s = (s < 10) ? "0" + s : s;
+
+        var time = h + ":" + m + ":" + s + " " + session;
+        document.getElementById("MyClockDisplay").innerText = time;
+        document.getElementById("MyClockDisplay").textContent = time;
+
+        setTimeout(showTime, 1000);
+
+    }
+
+    showTime();
+
+</script>
+
 <?php 
    $path = $_SERVER['DOCUMENT_ROOT'];
    include_once("cms/footer.php");
 ?>
-

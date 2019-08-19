@@ -39,7 +39,7 @@ if(@$_SESSION['user_id']){
 	
 	if(isset($_POST['submit']))
 	{
-			$check_subject = GetSubjectInfo($_POST['subcode'],$_SESSION['user_id']);
+		$check_subject = GetSubjectInfo($_POST['subcode'],$_SESSION['user_id']);
 		if($check_subject === 0){
 			$count= add_subjects($_SESSION['user_id'],$_POST['subcode'],$_POST['name'],$_POST['l']);
 			if($count){ 
@@ -73,12 +73,12 @@ else{
 ?>
 
 
-<div class="container"> 
+<div class="container-fluid"> 
   <div class="row">
-    <div class="col-lg-6">
+    <div class="col-lg-4">
 		<div class="jumbotron">
 
-				<form class="form-horizontal" method= "post" action="">
+			<form class="form-horizontal" method= "post" action="">
 				<fieldset>
 
 				<!-- Form Name -->
@@ -86,43 +86,96 @@ else{
 
 				<!-- Text input-->
 				<div class="form-group">
-				  <label class="col-md-4 control-label" for="subcode">Subject Code</label>  
-				  <div class="col-md-8">
+				  <label class="control-label" for="subcode">Subject Code</label> 
 				  <input id="subcode" name="subcode" type="text" placeholder="" class="form-control input-md" required="">
-					
-				  </div>
 				</div>
 
 				<!-- Text input-->
 				<div class="form-group">
-				  <label class="col-md-4 control-label" for="name">Subject Name</label>  
-				  <div class="col-md-8">
+				  <label class="control-label" for="name">Subject Name</label> 
 				  <input id="name" name="name" type="text" placeholder="" class="form-control input-md" required="">
-					
-				  </div>
 				</div>
 
 				<!-- Text input-->
 				<div class="form-group">
-				  <label class="col-md-4 control-label" for="l">Total Lecture</label>  
-				  <div class="col-md-8">
-				  <input id="l" name="l" type="text" placeholder="L" class="form-control input-md" required="">
+				  <label class="control-label" for="l">Total Lecture</label> 
+				  <input id="l" name="l" type="text" placeholder="" class="form-control input-md" required="">
 				  <span class="help-block">Total lecture for this subject</span>  
-				  </div>
 				</div>
 
 				<!-- Button -->
 				<div class="form-group">
-				  <label class="col-md-4 control-label" for="submit"></label>
-				  <div class="col-md-4">
-					<button id="submit" name="submit" class="btn btn-primary">Add Subject</button>
-				  </div>
+				  <label class="control-label" for="submit"></label>
+					<button id="submit" name="submit" class="btn btn-success">Add Subject</button>
 				</div>
 
 				</fieldset>
-				</form>
+			</form>
 		</div>		
     </div>
-  </div>
-  
+
+    <div class="col-lg-8">
+		<?php
+			if($_SESSION['user_id']){
+				
+				function deletesub($subcode, $user_id){
+					$db_connection = new dbConnection();
+					$link = $db_connection->connect(); 
+					$link->query("DELETE FROM `timetable`.`subject` WHERE `subject`.`subject_id` = '$subcode' AND `subject`.`user_id`='$user_id'");
+				}
+				if(isset($_GET['delete'])){
+					 deletesub($_GET['id'],$_SESSION['user_id']);
+					 echo 	'<div class="alert alert-success">  
+							<a class="close" data-dismiss="alert">X</a>  
+							<strong>Tada Success! </strong>Successfully Deleted.  
+							</div>'; 
+				}
+				
+				// This function lists all the timetable created till now.. with options like delete, edit
+				function Subjectlist($user_id){
+					$db_connection = new dbConnection();
+					$link = $db_connection->connect(); 
+					$query = $link->query("SELECT * FROM subject WHERE user_id= '$user_id'");
+					$query->setFetchMode(PDO::FETCH_ASSOC);
+					
+					
+					echo
+						  "<h2>List of Subjects Already Added</h2>".          
+						  "<table class='table table-bordered'>".
+							"<thead>".
+							  "<tr>".
+							   "<th>Subject Id</th>".
+								"<th>Subject Code</th>".
+								"<th>Subject Name</th>".
+								"<th>L</th>".
+								"<th>Options</th>".
+							  "</tr>".
+							"</thead>".
+							"<tbody>";
+							
+							while($result = $query->fetch()){
+							  echo "<tr>"
+									."<td>".$result['subject_id']."</td>"
+									 ."<td>".$result['subject_code']."</td>"
+									 ."<td>".$result['subject_name']."</td>"
+									 ."<td>".$result['l']."</td>"
+									 ."<td><a href='add.subject.php?delete=true&id=".$result['subject_id']."'>Delete</a></td>"
+									 ."</tr>".
+							  "</tr>";
+							}  
+					echo	"</tbody>".
+						  "</table>".
+						"</div>";
+						
+				}
+				
+				Subjectlist($_SESSION['user_id']);
+			}
+			else{
+				echo "You are not logged in yet. Please go back and login again";
+			}
+		?>
+		
+    </div>
+  </div>  
 </div>

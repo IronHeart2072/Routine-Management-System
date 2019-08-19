@@ -1,7 +1,6 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="dashboard.php"> Routine Management System </a>
     </div>
     <div>
       <ul class="nav navbar-nav">
