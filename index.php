@@ -1,127 +1,117 @@
-<!DOCTYPE html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <title>Login</title>
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css"/>
-        <link rel="stylesheet" href="assets/css/style.css" type="text/css"/>
-    </head>
-    <body >
+<?php 
+   session_start();
+   $path = $_SERVER['DOCUMENT_ROOT'];
+   include_once("cms/header.php"); 
 
-    <div class="container">
-        <div id="login-form">    
-            <div class="col-md-12"> 
+   $path = $_SERVER['DOCUMENT_ROOT'];
+   include_once("cms/class.ManageUsers.php");
+   
+   $users = new ManageUsers();
+   
+   
+   if(isset($_POST['lgn']))
+	{
+		$username = $_POST['username'];
+		$password = $_POST['password'];
+		
+		$count = $users->LoginUsers($username, $password);
+		if($count ==0)
+		{
+			echo "You are not yet Registered";
+		}
+		else if($count == 1)
+		{
+			$make_sessions = $users->GetUserInfo($username);
+				foreach($make_sessions as $userSessions)
+				{
+					$_SESSION['name'] = $userSessions['username'];
+					if(isset($_SESSION['name']))
+					{
+						header("location: dashboard/dashboard.php");
+					}
+				}
+		}
+		
+	}
+	
+	
+?>
+
+<body id="back">
+
+
+    <div class="container-fluid">
+        <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
+        <div id="form" class="login">
+            <form class="form-horizontal" method="post" action="">
+                <fieldset>
+
+                    <!-- Form Name -->
+                    <h1>Welcome</h1>
+
+                    <!-- Text input-->
                     <div class="form-group">
-                        <h2 class="text-center py-2">Login Form</h2>
+
+                        <input id="username" name="username" type="text" placeholder="Username" class="form-control input-md" required=""  aria-describedby="basic-addon1">
+
                     </div>
 
-                    <?php                        
-                            if(isset($_GET['empty']))
-                            {
-                                $Message=$_GET['empty'];
-                                $Message= " Please Fill in the Blanks";
-                    ?>
-                            <div class="alert alert-danger text-center"><?php echo $Message ?></div>                            
-                    <?php                            
-                            }
-                        
-                    ?>     
-     
-                    <?php
-                        
-                            if(isset($_GET['U_Invalid']))
-                            {
-                                $Message=$_GET['U_Invalid'];
-                                $Message= " Wrong username/Password Combination";
-                    ?>
-                            <div class="alert alert-danger text-center"><?php echo $Message ?></div>                            
-                    <?php                            
-                            }
-                        
-                    ?>
-     
-     
-                            <?php
-                        
-                            if(isset($_GET['P_Invalid']))
-                            {
-                                $Message=$_GET['P_Invalid'];
-                                $Message= " Wrong username/Password Combination";
-                        ?>
-                            <div class="alert alert-danger text-center"><?php echo $Message ?></div>                            
-                        <?php                            
-                            }
-                        
-                        ?>
-
+                    <!-- Password input-->
                     <div class="form-group">
-                        <hr/>
+                        <input id="password" name="password" type="password" placeholder="Password" class="form-control input-md" required="">
+
                     </div>
 
-                    <form action="cms/login.php" method="post" autocomplete="off">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                                    <input type="text" name="username" class="form-control" placeholder="Username" />
-                                </div>
-                            </div>
+                    <!-- Button -->
+                    <div class="form-group">
+                        <input type="submit" name="lgn" class="btn btn-login" value="Login">
 
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                                    <input type="password" name="password" class="form-control" placeholder="Password" />
-                                </div>
-                            </div>
+                    </div>
 
-                            <div class="form-group">
-                                <hr/>
-                            </div>
-
-                            <div class="form-group">
-                                <button type="Submit" class="btn btn-block btn-primary" name="login">Login</button>
-                            </div>
-
-                            <div class="form-group">
-                                <hr/>
-                            </div>
-
-                            <div class="form-group">
-                                <a href="cms/signupdesign.php" type="button" class="btn btn-block btn-danger"
-                                name="btn-login">Register</a>
-                            </div>
-
-                        </div>
-
-                     </form>
-                 </div>
-            </div>
+                </fieldset>
+                <span>
+                        Are you new? <a href="cms/login.php">Register</a>
+                    </span>
+            </form>
         </div>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
-    </body>
-    </html>
-    <?php
-    /*require('dbconnect.php');
-    // If form submitted, insert values into the database.
-    if (isset($_REQUEST['username']))
-    {
-            // removes backslashes
-        $Username = stripslashes($_REQUEST['username']);
-            //escapes special characters in a string
-        $Username = mysqli_real_escape_string($con,$Username); 
-        $Email = stripslashes($_REQUEST['email']);
-        $Email = mysqli_real_escape_string($con,$Email);
-        $Password = stripslashes($_REQUEST['password']);
-        $Password = mysqli_real_escape_string($con,$Password);
-            $sql = "INSERT into `users` (username, password, email)VALUES ('$Username', '".md5($Password)."', '$Email')";
-            $result = mysqli_query($con,$sql);
-            if($result)
-            {   
-                echo "<div class='form'> <h3>You are registered successfully.Login Please!!!</h3> 
-                </div>";
-            }
+    </div>
+
+</body>
+
+<script type="text/javascript">
+    function showTime() {
+        var date = new Date();
+        var h = date.getHours(); // 0 - 23
+        var m = date.getMinutes(); // 0 - 59
+        var s = date.getSeconds(); // 0 - 59
+        var session = "AM";
+
+        if (h == 0) {
+            h = 12;
+        }
+
+        if (h > 12) {
+            h = h - 12;
+            session = "PM";
+        }
+
+        h = (h < 10) ? "0" + h : h;
+        m = (m < 10) ? "0" + m : m;
+        s = (s < 10) ? "0" + s : s;
+
+        var time = h + ":" + m + ":" + s + " " + session;
+        document.getElementById("MyClockDisplay").innerText = time;
+        document.getElementById("MyClockDisplay").textContent = time;
+
+        setTimeout(showTime, 1000);
+
     }
-    else
-    {
-        echo("");
-    }*/
-    ?>
+
+    showTime();
+
+</script>
+
+<?php 
+   $path = $_SERVER['DOCUMENT_ROOT'];
+   include_once("cms/footer.php");
+?>
