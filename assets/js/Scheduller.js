@@ -1,143 +1,87 @@
 //	Temporary entities due to the absence of DB are represented by :- <[T]>
 
+var currentUnit;
+var routine = [];			// Array to store generated Schedule
+var courseSlack;
 
-var wta = [];			//  Array to store Weekly Teacher Availability data
-var schedule = [];			// Array to store generated Schedule
-
-var teacherDB = [];			// Array to store data from Teacher DataBase 
-var courseDB = [];			// Array to store data from Course DataBase
-
-
-
-
-
-// Class : Teacher
-class Teacher
+function initRoutine() 
 {
-	constructor(eid,name,)
+	console.log('\n\nFunction : initRoutine()')
+	for (var i = 0; i < WTA.length; i++) 
 	{
-		this.eid = eid;
-		this.name = name;
-		this.freeTime = [];
-	}
+		var routineObject = {
+								time:WTA[i].time,
+								course: "TBA",
+								};
 
-	console()
-	{
-		console.log(this);
-	}
-
-	
-	//	<[T]> Function to check wether an Object of teacher class already exists in TeacherDB
-	isTeacherExist()
-	{
-		for (var i = 0; i < teacherDB.length; i++) 
-		{
-			if (teacherDB[i].eid === this.eid) 
-			{
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		}
-	}
-	
-	//	<[T]> Function to add objects of teacher class to TeacherDB
-	addTeacher()
-	{
-		if (!this.isTeacherExist()) 
-		{
-			teacherDB.push(this);
-		}
-		else
-		{
-			alert("Teacher id already exists.");
-		}
-	}
-
-	//	<[T]> Function to add start and end time
-	addFreeTime(day,startHour,startMinute,endHour,endMinute) 
-	{
-		var timeInstance = {
-							day : day,
-							startHour : startHour,
-							startMinute : startMinute,
-							endHour : endHour,
-							endMinute : endMinute
-							}
-		this.freeTime.push(timeInstance);
-	}
-
-
-}
-
-
-//	Class : Course
-class Course
-{
-	constructor(cid,name,teachers,totalNoOfClasses,noOfClassesTaken,currentSlack)
-	{
-		this.cid = cid;
-		this.name = name;
-		this.teachers  = teachers;
-		this.totalNoOfClasses  = totalNoOfClasses;
-		this.noOfClassesTaken  = noOfClassesTaken;
-		this.currentSlack  = currentSlack;
-	}
-
-	console()
-	{
-		console.log(this);
-	}
-
-	//	<[T]> Function to check wether an Object of Course class already exists in courseDB
-	isCourseExist()
-	{
-		for (var i = 0; i < courseDB.length; i++) 
-		{
-			if (courseDB[i].eid === this.eid) 
-			{
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		}
-	}
-	
-	//	<[T]> Function to add objects of Course class to courseDB
-	addCourse()
-	{
-		if (!this.isCourseExist()) 
-		{
-			courseDB.push(this);
-		}
-		else
-		{
-			alert("Course id already exists.");
-		}
+		routine.push(routineObject);
 	}
 }
 
-var t1 = new Teacher(1,"KD");
-//t1.console();
-t1.addTeacher();
-t1.addFreeTime(0,7,00,8,30);
+function schedule() 
+{
+	console.log('Course Slack = ',courseSlack);
+	var routineIndex = 0;			
+	for (var i = 0; i < WTA.length; i++)	//	For the Unit of time of Routine
+	{
+		currentUnit = i; 
+		var courseSlack = []			//	Array to store Slack of	Courses for a specific Unit of the Routine
 
-var t2 = new Teacher(2,"MA");
-//t2.console();
-t2.addTeacher();
-t2.addFreeTime(0,7,30,8,30);
+		console.log('At WTA unit ',i);	
+		for (var j = 0; j < courseDB.length; j++)	//	For each Course
+		{	
+			if (courseDB[j].needsSchedulling())	//	Checking if the Course needs schedulling 
+			{
+				console.log('\t',courseDB[j].name,' needs schedulling.');
+			/*
+				for (var k = 0; k < courseDB[j].teachers.length; k++) 
+				{
+			*/
+					var teacher = courseDB[j].teachers;
+					
+					if (courseDB[j].teachers.isAvailable(WTA[i].time)) 
+					{
+						console.log('\t\t',courseDB[j].teachers.name,' is available.');	
+						var slack = courseDB[j].getSlack(courseDB[j].teachers.eid);
+						console.log('\t\tSlack = ',slack);
+						courseDB[j].slack = slack;
+						courseSlack.push(courseDB[j]);
+					}		
+					else
+					{
+						console.log('\t\t',courseDB[j].teachers.name,' is not available.');	
 
-var c1 = new Course(1,"Internet Technology",t1,6,0);
-//c1.console();
-c1.addCourse();
+					}
+			/*
+				}
+			*/
+			}
 
-var c2 = new Course(2,"Software Programming Methodology",t2,5,0);
-//c2.console();
-c2.addCourse();
-	
-console.log('Teachers :- ',teacherDB);
-console.log('Courses :- ',courseDB);
+		}	
+
+		console.log(courseSlack);
+		
+		if (courseSlack.length > 0) 
+		{
+			var min = courseSlack[0].slack;	
+			var LSI = 0;	//	Least Slack Index is the index of the element of 'coursesSlack' with the least 'slack'
+			for (var l = 0; l < courseSlack.length; l++) 
+			{
+				if(min > courseSlack[l].slack)
+				{
+					min = courseSlack[l].slack;
+					LSI = l; 
+				}					
+			}
+			var routineObject = {
+									time:WTA[i].time,
+									course: courseSlack[LSI]
+									};
+			routine[i] = routineObject;
+			console.log('Scheduled Course = ',courseSlack[LSI]);
+		}
+		
+
+	} 
+		
+}

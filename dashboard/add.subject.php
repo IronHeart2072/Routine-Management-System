@@ -4,11 +4,9 @@
 if(@$_SESSION['user_id']){
 	
    $path = $_SERVER['DOCUMENT_ROOT'];
-   // $path .= "/timetable/header.php";
    include_once("../cms/header.php");
    
    $path = $_SERVER['DOCUMENT_ROOT'];
-   // $path .= "/timetable/class.database.php";
    include_once("../cms/class.database.php");
    
    include_once("navbar.php");
@@ -29,11 +27,11 @@ if(@$_SESSION['user_id']){
 			}
 		}
 	
-	function add_subjects($user_id,$code,$name,$lecture,$tutorial,$practicle){
+	function add_subjects($user_id,$code,$name,$lecture){
 			$db_connection = new dbConnection();
 			$link = $db_connection->connect(); 
-			$query = $link->prepare("INSERT INTO subject (user_id,subject_code,subject_name,l,t,p) VALUES(?,?,?,?,?,?)");
-			$values = array ($user_id,$code,$name,$lecture,$tutorial,$practicle);
+			$query = $link->prepare("INSERT INTO subject (user_id,subject_code,subject_name,l) VALUES(?,?,?,?)");
+			$values = array ($user_id,$code,$name,$lecture);
 			$query->execute($values);
 			$count = $query->rowCount();
 			return $count;
@@ -41,9 +39,9 @@ if(@$_SESSION['user_id']){
 	
 	if(isset($_POST['submit']))
 	{
-			$check_subject = GetSubjectInfo($_POST['subcode'],$_SESSION['user_id']);
+		$check_subject = GetSubjectInfo($_POST['subcode'],$_SESSION['user_id']);
 		if($check_subject === 0){
-			$count= add_subjects($_SESSION['user_id'],$_POST['subcode'],$_POST['name'],$_POST['l'],$_POST['t'],$_POST['p'] );
+			$count= add_subjects($_SESSION['user_id'],$_POST['subcode'],$_POST['name'],$_POST['l']);
 			if($count){ 
 			
 			echo 	'<div class="alert alert-success">  
@@ -80,7 +78,7 @@ else{
     <div class="col-lg-4">
 		<div class="jumbotron">
 
-				<form class="form-horizontal" method= "post" action="">
+			<form class="form-horizontal" method= "post" action="">
 				<fieldset>
 
 				<!-- Form Name -->
@@ -88,58 +86,34 @@ else{
 
 				<!-- Text input-->
 				<div class="form-group">
-				  <label class="control-label" for="subcode">Subject Code</label>  
-
+				  <label class="control-label" for="subcode">Subject Code</label> 
 				  <input id="subcode" name="subcode" type="text" placeholder="" class="form-control input-md" required="">
-
 				</div>
 
 				<!-- Text input-->
 				<div class="form-group">
-				  <label class="control-label" for="name">Subject Name</label>  
-
+				  <label class="control-label" for="name">Subject Name</label> 
 				  <input id="name" name="name" type="text" placeholder="" class="form-control input-md" required="">
-
 				</div>
 
 				<!-- Text input-->
 				<div class="form-group">
-				  <label class="control-label" for="l">Total Lecture</label>  
-
-				  <input id="l" name="l" type="text" placeholder="L" class="form-control input-md" required="">
+				  <label class="control-label" for="l">Total Lecture</label> 
+				  <input id="l" name="l" type="text" placeholder="" class="form-control input-md" required="">
 				  <span class="help-block">Total lecture for this subject</span>  
-
-				</div>
-
-				<!-- Text input-->
-				<div class="form-group">
-				  <label class="control-label" for="t">Total Tutorial</label>  
-
-				  <input id="t" name="t" type="text" placeholder="T" class="form-control input-md" required="">
-				  <span class="help-block">Total tutorial for this subject</span>  
-
-				</div>
-
-				<!-- Text input-->
-				<div class="form-group">
-				  <label class="control-label" for="p">Total Practical</label>  
-
-				  <input id="p" name="p" type="text" placeholder="P" class="form-control input-md" required="">
-
 				</div>
 
 				<!-- Button -->
 				<div class="form-group">
 				  <label class="control-label" for="submit"></label>
-
 					<button id="submit" name="submit" class="btn btn-success">Add Subject</button>
-
 				</div>
 
 				</fieldset>
-				</form>
+			</form>
 		</div>		
     </div>
+
     <div class="col-lg-8">
 		<?php
 			if($_SESSION['user_id']){
@@ -174,8 +148,6 @@ else{
 								"<th>Subject Code</th>".
 								"<th>Subject Name</th>".
 								"<th>L</th>".
-								"<th>T</th>".
-								"<th>P</th>".
 								"<th>Options</th>".
 							  "</tr>".
 							"</thead>".
@@ -187,8 +159,6 @@ else{
 									 ."<td>".$result['subject_code']."</td>"
 									 ."<td>".$result['subject_name']."</td>"
 									 ."<td>".$result['l']."</td>"
-									 ."<td>".$result['t']."</td>"
-									 ."<td>".$result['p']."</td>"
 									 ."<td><a href='add.subject.php?delete=true&id=".$result['subject_id']."'>Delete</a></td>"
 									 ."</tr>".
 							  "</tr>";
@@ -207,6 +177,5 @@ else{
 		?>
 		
     </div>
-  </div>
-  
+  </div>  
 </div>

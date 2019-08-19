@@ -1,11 +1,9 @@
 <?php
    session_start();
    $path = $_SERVER['DOCUMENT_ROOT'];
-   // $path .= "/timetable/header.php";
    include_once("../cms/header.php");
    
    $path = $_SERVER['DOCUMENT_ROOT'];
-   // $path .= "/timetable/class.database.php";
    include_once("../cms/class.database.php");
    
    include_once("navbar.php");
@@ -61,27 +59,45 @@ if($_SESSION['user_id']){
 			<!-- Text input-->
 				<div class="form-group">
 				  <label class="control-label" for="name">Course Code</label>  
-
-				  <input id="name" name="name" type="text" placeholder="" class="form-control input-md" required="">
-				<span class="help-block">e.g BBA, B.Tech-IT, B.Tech-Me, MCA, MBA, LAW</span>  	
-
-				</div>
-				
+				  	<select id="name" name="name" class="form-control">
+					  <option value="Select">Select</option>
+					  <option value="BSc.CSIT">BSc.CSIT</option>
+					  <option value="B.LAW">B.LAW</option>
+					  <option value="B.A/B.S">B.A/B.S</option>
+					  <option value="B.CA">B.CA</option>
+					  <option value="B.Ec">B.Ec</option>
+					  <option value="B.Ed">B.Ed</option>
+					  <option value="BE.Civil">BE.Civil</option>
+					  <option value="BE.computer">BE.computer</option>
+					  <option value="BBA">BBA</option>
+					  <option></option>
+					</select>
+				  </div>				
 			
 			<!-- Text input-->
 				<div class="form-group">
 				  <label class="control-label" for="name">Course Name</label>  
-
-				  <input id="coursefullname" name="coursefullname" type="text" placeholder="" class="form-control input-md" required="">
-				<span class="help-block">e.g Information Technology, Computer Science, Bachelor of Business Applications</span>  	
-
-				</div>
-				
+				  	<select id="coursefullname" name="coursefullname" class="form-control">
+				   	  <option value="Select">Select</option>
+					  <option value="Information Technology & Computer Science">Information Technology & Computer Science</option>
+					  <option value="Drama & Cinematics">Drama & Cinematics</option>
+					  <option value="Art & Design">Art & Design</option>
+					  <option value="Literature">Literature</option>
+					  <option value="History">History</option>
+					  <option value="Commerce">Commerce</option>
+					  <option value="Education">Education</option>
+					  <option value="Economics">Economics</option>					  
+					  <option value="Law">Law</option>
+					  <option value="Civil Engineering">Civil Engineering</option>
+					  <option value="Computer Engineering">Computer Engineering</option>
+					  <option value="Electronics Engineering">Electronics Engineering</option>
+					  <option value="Management studies">Management studies</option>
+					</select> 	
+				  </div>				
 
 			<!-- Select Basic -->
 			<div class="form-group">
 			  <label class="control-label" for="semester">In Semester</label>
-
 				<select id="semester" name="semester" class="form-control">
 				  <option value="one">1</option>
 				  <option value="two">2</option>
@@ -92,25 +108,21 @@ if($_SESSION['user_id']){
 				  <option value="seven">7</option>
 				  <option value="eight">8</option>
 				</select>
-
 			</div>
 
 			<!-- Select Basic -->
 			<div class="form-group">
 			  <label class="control-label" for="section">In Section</label>
-
 				<select id="section" name="section" class="form-control">
 				  <option value="a">A</option>
 				  <option value="b">B</option>
 				  <option value="c">C</option>
 				</select>
-
 			</div>
 
 			<!-- Select Basic -->
 			<div class="form-group">
 			  <label class="control-label" for="subject">Subject Taught</label>
-
 				<select id="subject" name="subject" class="form-control">
 				<?php
 				    $db_connection = new dbConnection();
@@ -122,13 +134,11 @@ if($_SESSION['user_id']){
 					echo '<option value="'.$result['subject_id'].'">'.$result['subject_name'].'</option>';
 				  }?>
 				</select>
-
 			</div>
 
 			<!-- Select Basic -->
 			<div class="form-group">
 			  <label class="control-label" for="faculty">Faculty Teaching</label>
-
 				<select id="faculty" name="faculty" class="form-control">
 				  <?php
 				    $db_connection = new dbConnection();
@@ -140,21 +150,19 @@ if($_SESSION['user_id']){
 					echo '<option value="'.$result['faculty_id'].'">'.$result['faculty_name'].'</option>';
 				  }?>
 				</select>
-
 			</div>
 
 			<!-- Button -->
 			<div class="form-group">
 			  <label class="control-label" for="submit"></label>
-
 				<button id="submit" name="submit" class="btn btn-success">Add Course</button>
-
 			</div>
 
 			</fieldset>
 			</form>
 		</div>		
     </div>
+
     <div class="col-lg-8">
 		<?php
 			if($_SESSION['user_id']){
@@ -217,7 +225,7 @@ if($_SESSION['user_id']){
 				echo "You are not logged in yet. Please go back and login again";
 			}
 		?>
-		
+	
     </div>
   </div>
   
