@@ -62,7 +62,7 @@ html,body {background-color: #efefef;height: 100%;}
 #content.register #form {position: absolute;right: 0;left: 0;top: 25%;}
 #content.register #form form {    background-color: #1d1d1dc4;width: 40%;margin: 0 auto;padding:20px;}
 #content.register #form form .form-group {margin-left: 0;margin-right: 0;}
-#content.register legend {padding-bottom: 12px;}
+#content.register legend {padding-bottom: 12px;margin-bottom: 30px;}
 #content.register legend a {color: #CCC;}
 #content.register legend>span {display: inline-block;width: 92%;text-align: center;color: #FFF;}
 
