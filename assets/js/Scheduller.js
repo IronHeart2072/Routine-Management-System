@@ -33,10 +33,11 @@ function schedule()
 			if (courseDB[j].needsSchedulling())	//	Checking if the Course needs schedulling 
 			{
 				console.log('\t',courseDB[j].name,' needs schedulling.');
-			/*
+
+				/*
 				for (var k = 0; k < courseDB[j].teachers.length; k++) 
 				{
-			*/
+				*/
 					var teacher = courseDB[j].teachers;
 					
 					if (courseDB[j].teachers.isAvailable(WTA[i].time)) 
@@ -52,9 +53,9 @@ function schedule()
 						console.log('\t\t',courseDB[j].teachers.name,' is not available.');	
 
 					}
-			/*
+				/*
 				}
-			*/
+				*/
 			}
 
 		}	

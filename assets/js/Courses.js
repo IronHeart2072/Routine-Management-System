@@ -85,13 +85,6 @@ class Course
 		console.log('\tSlack :- (',totalUnits,' - ',remainingUnits,') - (',totalClasses,' - ',classesTaken,') = ',slack)		
 		return slack;
 	}
-
-
-	
-
-
-
-	
 }
 
 

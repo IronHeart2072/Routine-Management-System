@@ -45,13 +45,6 @@ class Teacher
 	//	<[T]> Function to add start and end time
 	addFreeTime(day,startHour,startMin,endHour,endMin) 
 	{
-		/*var timeInstance = {
-							day : day,
-							startHour : startHour,
-							startMin : startMin,
-							endHour : endHour,
-							endMin : endMin
-							}*/
 		var timeInstance = new TimeInstance(day,startHour,startMin,endHour,endMin)
 		this.freeTime.push(timeInstance);
 	}
@@ -62,29 +55,37 @@ class Teacher
 		//console.log('\n\nFunction : isAvailable(timeInstance)')
 		
 		var teacher = this;
-		//console.log(this);
+		console.log(this);
 		var ipTime = timeInstance;
 		var isAvailable = false;
 		
 		for (var i = 0; i < teacher.freeTime.length; i++) 
 		{
-			var ipStartTime = toMin(ipTime.startHour,ipTime.startMin);
-			var teacherStartTime = toMin(teacher.freeTime[i].startHour,teacher.freeTime[i].startMin);
-			var ipEndTime = toMin(ipTime.endHour,ipTime.endMin);
-			var teacherEndTime = toMin(teacher.freeTime[i].endHour,teacher.freeTime[i].endMin);
-			
-			//console.log('i = ',i);
-			//console.log('teacherStartTime = ',teacherStartTime,'ipStartTime = ',ipStartTime);
-			//console.log('teacherEndTime = ',teacherEndTime,'ipEndTime = ',ipEndTime);
+			var sh = teacher.freeTime[i].startHour;
+			var sm = teacher.freeTime[i].startMin;
+			var eh = teacher.freeTime[i].endHour;
+			var em = teacher.freeTime[i].endMin;
 
+			var teacherStartTime = toMin(sh,sm);
+			var teacherEndTime = toMin(eh,em);
+			/*teacherStartTime = ((teacherStartTime-(teacherStartTime%100))/100)+(teacherStartTime%100);
+			teacherEndTime = ((teacherEndTime-(teacherEndTime%100))/100)+(teacherEndTime%100);*/
+			var ipStartTime = toMin(ipTime.startHour,ipTime.startMin);
+			var ipEndTime = toMin(ipTime.endHour,ipTime.endMin);
+			
+			console.log('i = ',i);
+			console.log('teacherStartTime = ',sh,sm,teacherStartTime,'ipStartTime = ',ipTime.startHour,ipTime.startMin,ipStartTime);
+			console.log('teacherEndTime = ',eh,em,teacherEndTime,'ipEndTime = ',ipTime.endHour,ipTime.endMin,ipEndTime);
+			console.log(ipTime.day,teacher.freeTime[i].day);
+			
 			if ((ipTime.day === teacher.freeTime[i].day) && (teacherStartTime <= ipStartTime) && (teacherEndTime >= ipEndTime)) 
 			{
-				//console.log('true');
+				console.log('true');
 				return true;
 			}
 			else if (i == teacher.freeTime.length)
 			{
-				//console.log('false');
+				console.log('false');
 				return false;
 			}
 		}

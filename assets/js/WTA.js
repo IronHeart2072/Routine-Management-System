@@ -87,9 +87,15 @@ function updateWTA()
 			
 				if (teacher.isAvailable(WTA[i].time)) 
 				{
+					console.log('Currently Available');
 					WTA[i].availableTeachers.push(teacher);
 					WTA[i].availableTeachers.isEmpty = false;
 					console.log("\t\t\t\tPushed ",teacher);		
+				}
+				else
+				{
+					console.log('Not Currently Available');
+				
 				}
 
 			}
