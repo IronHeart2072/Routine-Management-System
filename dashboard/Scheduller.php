@@ -1,20 +1,20 @@
 <?php
 	$path = $_SERVER['DOCUMENT_ROOT'];
-	include_once("../../cms/header.php");
+	include_once("../cms/header.php");
 	
 
 ?>
-<link rel="stylesheet" href="../CSS/timetablejs.css">
-<script type="text/javascript" src="../JS/timetable.js"></script>
-<script type="text/javascript" src="../JS/DisplayTable.js"></script>
-<script type="text/javascript" src="../JS/TimeInstance.js"></script>
-<script type="text/javascript" src="../JS/Teachers.js"></script>
-<script type="text/javascript" src="../JS/Courses.js"></script>
-<script type="text/javascript" src="../JS/WTA.js"></script>
-<script type="text/javascript" src="../JS/Scheduller.js"></script>
+<link rel="stylesheet" href="../assets/CSS/timetablejs.css">
+<script type="text/javascript" src="../assets/js/timetable.js"></script>
+<script type="text/javascript" src="../assets/js/DisplayTable.js"></script>
+<script type="text/javascript" src="../assets/js/TimeInstance.js"></script>
+<script type="text/javascript" src="../assets/js/Teachers.js"></script>
+<script type="text/javascript" src="../assets/js/Courses.js"></script>
+<script type="text/javascript" src="../assets/js/WTA.js"></script>
+<script type="text/javascript" src="../assets/js/Scheduller.js"></script>
 <?php
 $path = $_SERVER['DOCUMENT_ROOT'];
-	include_once("../../dashboard/navbar.php");
+	include_once("navbar.php");
 
 ?>
 
@@ -26,7 +26,7 @@ $path = $_SERVER['DOCUMENT_ROOT'];
 </div>
 <?php
 	$path = $_SERVER['DOCUMENT_ROOT'];
-	include_once("../../cms/class.database.php");
+	include_once("../cms/class.database.php");
 
 	// To load data data from Teacher DB;
 	$db_connection = new dbConnection();

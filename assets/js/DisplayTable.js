@@ -3,7 +3,7 @@ function displayRoutine()
 	var timetable = new Timetable();
 	var day;
 
-	timetable.setScope(6,14)
+	timetable.setScope(6,21);
 
 	timetable.addLocations(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']);
 
@@ -12,25 +12,25 @@ function displayRoutine()
 	{
 		switch (routine[i].time.day) 
 		{
-		  case 0:
+		  case 1:
 		    day = "Sunday";
 		    break;
-		  case 1:
+		  case 2:
 		    day = "Monday";
 		    break;
-		  case 2:
+		  case 3:
 		     day = "Tuesday";
 		    break;
-		  case 3:
+		  case 4:
 		    day = "Wednesday";
 		    break;
-		  case 4:
+		  case 5:
 		    day = "Thursday";
 		    break;
-		  case 5:
+		  case 6:
 		    day = "Friday";
 		    break;
-		  case 6:
+		  case 7:
 		    day = "Saturday";
 		}
 

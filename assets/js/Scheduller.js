@@ -27,16 +27,17 @@ function schedule()
 		currentUnit = i; 
 		var courseSlack = []			//	Array to store Slack of	Courses for a specific Unit of the Routine
 
-		console.log('At WTA unit ',i);	
+		console.log('At WTA units ',i,WTA[i].time);	
 		for (var j = 0; j < courseDB.length; j++)	//	For each Course
 		{	
 			if (courseDB[j].needsSchedulling())	//	Checking if the Course needs schedulling 
 			{
 				console.log('\t',courseDB[j].name,' needs schedulling.');
-			/*
+
+				/*
 				for (var k = 0; k < courseDB[j].teachers.length; k++) 
 				{
-			*/
+				*/
 					var teacher = courseDB[j].teachers;
 					
 					if (courseDB[j].teachers.isAvailable(WTA[i].time)) 
@@ -52,9 +53,9 @@ function schedule()
 						console.log('\t\t',courseDB[j].teachers.name,' is not available.');	
 
 					}
-			/*
+				/*
 				}
-			*/
+				*/
 			}
 
 		}	

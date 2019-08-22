@@ -1,13 +1,66 @@
 <?php 
+   session_start();
    $path = $_SERVER['DOCUMENT_ROOT'];
-   include_once("header.php");
+   include_once("header.php"); 	
 ?>
+<script> 
+function validate()                                    
+{ 
+    var uname = document.forms["RegForm"]["uname"];               
+    var name = document.forms["RegForm"]["username"];               
+    var email = document.forms["RegForm"]["email"];    
+    var password = document.forms["RegForm"]["password"];  
+   
+     if (uname.value == "")                                  
+    { 
+        window.alert("Please enter your university name."); 
+        uname.focus(); 
+        return false; 
+    } 
+
+    if (name.value == "")                                  
+    { 
+        window.alert("Please enter your name."); 
+        name.focus(); 
+        return false; 
+    } 
+       
+    if (email.value == "")                                   
+    { 
+        window.alert("Please enter a valid e-mail address."); 
+        email.focus(); 
+        return false; 
+    } 
+   
+    if (email.value.indexOf("@", 0) < 0)                 
+    { 
+        window.alert("Please enter a valid e-mail address."); 
+        email.focus(); 
+        return false; 
+    } 
+   
+    if (email.value.indexOf(".", 0) < 0)                 
+    { 
+        window.alert("Please enter a valid e-mail address."); 
+        email.focus(); 
+        return false; 
+    } 
+   
+    if (password.value == "")                        
+    { 
+        window.alert("Please enter your password"); 
+        password.focus(); 
+        return false; 
+    } 
+   
+    return true; 
+}</script>
+
 <body>
 	<div id="content" class="register">
 		<div id="form" class="container">
-		<form class="form-horizontal" method="post" action="register.php">
+		<form name="RegForm" class="form-horizontal" method="post" action="register.php" onsubmit="return validate()">
 			<fieldset>
-
 			<!-- Form Name -->
 			<legend><a href="../index.php"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a><span>Registration Form</span></legend>
 			
@@ -43,9 +96,12 @@
 		</form>
 		</div>
 	</div>
+	
+
+
 			
 	<script type="text/javascript">
-		console.log("					<?php
+		console.log("<?php
 						echo $path;
 					?>
 			");

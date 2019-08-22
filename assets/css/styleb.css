@@ -3,17 +3,15 @@ html,body {background-color: #efefef;height: 100%;}
 
 .btn-success {background-color: #288628;border-color: #0e4e0e;}
 
-.clock {
-    position: absolute;
+.clock {position: absolute;
         top: 10%;
     left: 14%;
     transform: translateX(-50%) translateY(-50%);
     color: #FFF;
     font-size: 30px;
     letter-spacing: 7px;
-   
-
-
+   background-color: #212121d1;
+    padding: 8px 20px;
 }
 
 .navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {color: #FFF;background-color: #1a2c52;}
@@ -37,10 +35,11 @@ html,body {background-color: #efefef;height: 100%;}
 
 #form.login {
     width: 30%;right: 6%;
-    background-color: transparent;
+    background-color:#212121d1;
     border: transparent;
     position: absolute;
     top: 24%;
+    padding: 24px;
 }
 
 #form.login .form-horizontal .form-group {
@@ -77,5 +76,6 @@ html,body {background-color: #efefef;height: 100%;}
 .table-bordered tbody {background-color: #FFF;}
 
 
-/*#form.login .form-control {    background-color: transparent;border: none;border-bottom: 1px solid #ccc;border-radius: 0;color: #FFF;}
-#form.login .form-control:focus {box-shadow: ;}*/
+#form.login .form-control,#content.register #form form .form-control {    background-color: transparent;border: none;border-bottom: 1px solid #ccc;border-radius: 0;color: #FFF;}
+#form.login .form-control::placeholder,#content.register #form form .form-control::placeholder {color: #FFF;}
+#form.login .form-control:focus,#content.register #form form .form-control:focus {box-shadow: none;}

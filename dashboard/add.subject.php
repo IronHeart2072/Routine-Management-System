@@ -27,11 +27,11 @@ if(@$_SESSION['user_id']){
 			}
 		}
 	
-	function add_subjects($user_id,$code,$name,$lecture){
+	function add_subjects($teacher_id,$user_id,$code,$name,$lecture){
 			$db_connection = new dbConnection();
 			$link = $db_connection->connect(); 
-			$query = $link->prepare("INSERT INTO subject (user_id,subject_code,subject_name,l) VALUES(?,?,?,?)");
-			$values = array ($user_id,$code,$name,$lecture);
+			$query = $link->prepare("INSERT INTO subject (teacher_id,user_id,subject_code,subject_name,l) VALUES(?,?,?,?,?)");
+			$values = array ($teacher_id,$user_id,$code,$name,$lecture);
 			$query->execute($values);
 			$count = $query->rowCount();
 			return $count;
@@ -40,8 +40,9 @@ if(@$_SESSION['user_id']){
 	if(isset($_POST['submit']))
 	{
 		$check_subject = GetSubjectInfo($_POST['subcode'],$_SESSION['user_id']);
-		if($check_subject === 0){
-			$count= add_subjects($_SESSION['user_id'],$_POST['subcode'],$_POST['name'],$_POST['l']);
+		if($check_subject === 0)
+		{
+			$count= add_subjects($_POST['tname'],$_SESSION['user_id'],$_POST['subcode'],$_POST['name'],$_POST['l']);
 			if($count){ 
 			
 			echo 	'<div class="alert alert-success">  
@@ -50,14 +51,15 @@ if(@$_SESSION['user_id']){
 					</div>'; 
 			}
 			else{
-				echo '<div class="alert alert-block">  
+				echo '<div class="alert alert-danger fade in">  
 					<a class="close" data-dismiss="alert">X</a>  
 					<strong>Opps Error!</strong>Not Added.  
 					</div>';  
 			}
 		}
-		else{
-			echo '<div class="alert alert-block">  
+		else
+		{
+			echo '<div class="alert alert-danger fade in">  
 					<a class="close" data-dismiss="alert">X</a>  
 					<strong>Opps Error!</strong>Subject Already Exists.  
 					</div>'; 			
@@ -67,7 +69,8 @@ if(@$_SESSION['user_id']){
 	
 }
 else{
-	echo "You are not logged in yet. please go back and login again";
+	session_destroy();
+	header("location: ../index.php");
 	exit();
 }
 ?>
@@ -86,27 +89,42 @@ else{
 
 				<!-- Text input-->
 				<div class="form-group">
-				  <label class="control-label" for="subcode">Subject Code</label> 
+				  <label class="control-label" for="subcode">Subject Code</label>  
 				  <input id="subcode" name="subcode" type="text" placeholder="" class="form-control input-md" required="">
 				</div>
 
 				<!-- Text input-->
 				<div class="form-group">
-				  <label class="control-label" for="name">Subject Name</label> 
-				  <input id="name" name="name" type="text" placeholder="" class="form-control input-md" required="">
+				  <label class="control-label" for="name">Subject Name</label>  
+				  <input id="name" name="name" type="text" placeholder="" class="form-control input-md" required="">	
 				</div>
+
+				<div class="form-group">
+					  <label class="control-label" for="tname">Subject Teacher</label>
+						<select id="tname" name="tname" class="form-control">
+							<option value="" selected disabled hidden></option>
+							<?php
+							    $db_connection = new dbConnection();
+								$link = $db_connection->connect(); 
+								$user_id= $_SESSION['user_id'];
+								$query = $link->query("SELECT * FROM teacher WHERE user_id= '$user_id'");
+								$query->setFetchMode(PDO::FETCH_ASSOC); 				
+								while($result = $query->fetch()){
+								echo '<option value="'.$result['teacher_id'].'">'.$result['teacher_name'].'</option>';
+						  	}?>
+						</select>
+					</div>
 
 				<!-- Text input-->
 				<div class="form-group">
-				  <label class="control-label" for="l">Total Lecture</label> 
+				  <label class="control-label" for="l">Lectures per Week</label>  
 				  <input id="l" name="l" type="text" placeholder="" class="form-control input-md" required="">
-				  <span class="help-block">Total lecture for this subject</span>  
 				</div>
 
 				<!-- Button -->
 				<div class="form-group">
 				  <label class="control-label" for="submit"></label>
-					<button id="submit" name="submit" class="btn btn-success">Add Subject</button>
+					<button id="submit" name="submit" class="btn btn-primary">Add Subject</button>
 				</div>
 
 				</fieldset>
@@ -114,14 +132,15 @@ else{
 		</div>		
     </div>
 
+
     <div class="col-lg-8">
 		<?php
 			if($_SESSION['user_id']){
 				
-				function deletesub($subcode, $user_id){
+				function deletesub($subject_id, $user_id){
 					$db_connection = new dbConnection();
 					$link = $db_connection->connect(); 
-					$link->query("DELETE FROM `timetable`.`subject` WHERE `subject`.`subject_id` = '$subcode' AND `subject`.`user_id`='$user_id'");
+					$link->query("DELETE FROM  `subject` WHERE  `subject_id` ='$subject_id' AND `user_id`='$user_id'");
 				}
 				if(isset($_GET['delete'])){
 					 deletesub($_GET['id'],$_SESSION['user_id']);
@@ -135,19 +154,20 @@ else{
 				function Subjectlist($user_id){
 					$db_connection = new dbConnection();
 					$link = $db_connection->connect(); 
-					$query = $link->query("SELECT * FROM subject WHERE user_id= '$user_id'");
+					$query = $link->query("SELECT * FROM subject WHERE user_id='$user_id'");
 					$query->setFetchMode(PDO::FETCH_ASSOC);
 					
 					
 					echo
-						  "<h2>List of Subjects Already Added</h2>".          
-						  "<table class='table table-bordered'>".
+						  "<h2>List of Subject Already Added</h2>".
+						  "<table class='table table-bordered'>".          
 							"<thead>".
 							  "<tr>".
-							   "<th>Subject Id</th>".
+								"<th>Subject Id</th>".
+								"<th>Teacher Id</th>".
 								"<th>Subject Code</th>".
 								"<th>Subject Name</th>".
-								"<th>L</th>".
+								"<th>Total Lecture</th>".
 								"<th>Options</th>".
 							  "</tr>".
 							"</thead>".
@@ -155,7 +175,8 @@ else{
 							
 							while($result = $query->fetch()){
 							  echo "<tr>"
-									."<td>".$result['subject_id']."</td>"
+									 ."<td>".$result['subject_id']."</td>"
+									 ."<td>".$result['teacher_id']."</td>"
 									 ."<td>".$result['subject_code']."</td>"
 									 ."<td>".$result['subject_name']."</td>"
 									 ."<td>".$result['l']."</td>"
@@ -172,10 +193,12 @@ else{
 				Subjectlist($_SESSION['user_id']);
 			}
 			else{
-				echo "You are not logged in yet. Please go back and login again";
+				session_destroy();
+				header("location: ../index.php");
 			}
 		?>
 		
     </div>
-  </div>  
+  </div>
+  
 </div>
