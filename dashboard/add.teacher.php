@@ -13,7 +13,7 @@ if(@$_SESSION['user_id']){
  function GetTeacherInfo($user_id,$tcode){
 			$db_connection = new dbConnection();
 			$link = $db_connection->connect(); 
-			$query = $link->prepare("SELECT * FROM teacher WHERE user_id='$user_id' AND teacher_code = '$tcode'");
+			$query = $link->query("SELECT * FROM teacher WHERE user_id='$user_id' AND teacher_code = '$tcode'");
 			$rowCount = $query->rowCount();
 			if($rowCount ==1)
 			{
@@ -38,23 +38,38 @@ if(@$_SESSION['user_id']){
 		}
 
 
-		if(isset($_POST['submit']))
-		{
+	if(isset($_POST['submit']))
+	{
+		$check_teacher = GetTeacherInfo($_SESSION['user_id'], $_POST['tcode']);
+		if($check_teacher === 0){
 			$count= add_teacher($_SESSION['user_id'],$_POST['tcode'],$_POST['name']);
-				if($count){ 
-				
-						echo 	'<div class="alert alert-success">  
-						<a class="close" data-dismiss="alert">X</a>  
-						<strong>Tada Success! </strong>Added Successfully.  
-						</div>'; 
-				}
-				else{
-						echo '<div class="alert alert-block">  
-						<a class="close" data-dismiss="alert">X</a>  
-						<strong>Opps Error!</strong>Not Added.  
-						</div>';  
-				}
+			if($count){ 
+			
+			echo 	'<div class="alert alert-success">  
+					<a class="close" data-dismiss="alert">X</a>  
+					<strong>Tada Success! </strong>Added Successfully.  
+					</div>'; 
+			}
+			else{
+				echo '<div class="alert alert-danger fade in">  
+					<a class="close" data-dismiss="alert">X</a>  
+					<strong>Opps Error!</strong>Not Added.  
+					</div>';  
+			}
 		}
+		else{
+			echo '<div class="alert alert-danger fade in">  
+					<a class="close" data-dismiss="alert">X</a>  
+					<strong>Opps Error!</strong>Teacher Already Exists.  
+					</div>'; 			
+		}
+		
+	}
+}
+else{
+	session_destroy();
+	header("location: ../index.php");
+	exit();
 }
 ?>
 
@@ -117,13 +132,13 @@ if(@$_SESSION['user_id']){
 					
 					
 					echo
-						  "<h2>List of Subject Already Added</h2>".
+						  "<h2>List of Teacher Already Added</h2>".
 						  "<table class='table table-bordered'>".          
 							"<thead>".
 							  "<tr>".
-								"<th>teacher Id</th>".
-								"<th>teacher Code</th>".
-								"<th>teacher Name</th>".
+								"<th>Teacher Id</th>".
+								"<th>Teacher Code</th>".
+								"<th>Teacher Name</th>".
 								"<th>Options</th>".
 							  "</tr>".
 							"</thead>".
@@ -147,7 +162,8 @@ if(@$_SESSION['user_id']){
 				Subjectlist($_SESSION['user_id']);
 			}
 			else{
-				echo "You are not logged in yet. Please go back and login again";
+				session_destroy();
+				header("location: ../index.php");
 			}
 		?>
 		

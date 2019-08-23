@@ -52,10 +52,10 @@ class Teacher
 	//	Function to check if a Teacher is available
 	isAvailable(timeInstance) 
 	{
-		//console.log('\n\nFunction : isAvailable(timeInstance)')
+		////console.log('\n\nFunction : isAvailable(timeInstance)')
 		
 		var teacher = this;
-		console.log(this);
+		//console.log(this);
 		var ipTime = timeInstance;
 		var isAvailable = false;
 		
@@ -73,19 +73,19 @@ class Teacher
 			var ipStartTime = toMin(ipTime.startHour,ipTime.startMin);
 			var ipEndTime = toMin(ipTime.endHour,ipTime.endMin);
 			
-			console.log('i = ',i);
-			console.log('teacherStartTime = ',sh,sm,teacherStartTime,'ipStartTime = ',ipTime.startHour,ipTime.startMin,ipStartTime);
-			console.log('teacherEndTime = ',eh,em,teacherEndTime,'ipEndTime = ',ipTime.endHour,ipTime.endMin,ipEndTime);
-			console.log(ipTime.day,teacher.freeTime[i].day);
+			//console.log('i = ',i);
+			//console.log('teacherStartTime = ',sh,sm,teacherStartTime,'ipStartTime = ',ipTime.startHour,ipTime.startMin,ipStartTime);
+			//console.log('teacherEndTime = ',eh,em,teacherEndTime,'ipEndTime = ',ipTime.endHour,ipTime.endMin,ipEndTime);
+			//console.log(ipTime.day,teacher.freeTime[i].day);
 			
 			if ((ipTime.day === teacher.freeTime[i].day) && (teacherStartTime <= ipStartTime) && (teacherEndTime >= ipEndTime)) 
 			{
-				console.log('true');
+				//console.log('true');
 				return true;
 			}
 			else if (i == teacher.freeTime.length)
 			{
-				console.log('false');
+				//console.log('false');
 				return false;
 			}
 		}
@@ -93,7 +93,7 @@ class Teacher
 
 	getTotalUnits()
 	{
-		//console.log('\n\nFunction : getTotalUnits()')
+		////console.log('\n\nFunction : getTotalUnits()')
 		
 		var totalUnits = 0;
 
@@ -111,14 +111,14 @@ class Teacher
 				}
 			}
 		}
-		//console.log('\t\tTrue | totalUnits = ',totalUnits);
+		////console.log('\t\tTrue | totalUnits = ',totalUnits);
 				
 		return totalUnits;
 	}
 	
 	getRemainingUnits(currentUnit)
 	{
-		//console.log('\n\nFunction : getRemainingUnits(currentUnit = ',currentUnit,')')
+		////console.log('\n\nFunction : getRemainingUnits(currentUnit = ',currentUnit,')')
 		
 		var remainingUnits = 0;
 
@@ -126,13 +126,13 @@ class Teacher
 		{
 			for (var j = 0; j < WTA[i].availableTeachers.length; j++) 
 			{
-				//console.log('\t Unit = ',i,' | TeacherDB index = ',j,' | Teacher eid = ',WTA[i].availableTeachers[j].eid);
+				////console.log('\t Unit = ',i,' | TeacherDB index = ',j,' | Teacher eid = ',WTA[i].availableTeachers[j].eid);
 				
 				if (WTA[i].availableTeachers[j].eid === this.eid) 
 				{
 					remainingUnits++; 
 					
-					//console.log('\t\tTrue | remainingUnits = ',remainingUnits);
+					////console.log('\t\tTrue | remainingUnits = ',remainingUnits);
 				}
 			}
 		}

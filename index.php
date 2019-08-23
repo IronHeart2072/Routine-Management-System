@@ -12,12 +12,16 @@
    if(isset($_POST['lgn']))
 	{
 		$username = $_POST['username'];
-		$password = $_POST['password'];
+		$password = md5($_POST['password']);
+
 		
 		$count = $users->LoginUsers($username, $password);
 		if($count ==0)
 		{
-			echo "You are not yet Registered";
+			echo '<div class="alert alert-danger fade in">  
+                    <a class="close" data-dismiss="alert">X</a>  
+                    <strong>Opps !!! </strong>You are not Yet Registered.  
+                    </div>';
 		}
 		else if($count == 1)
 		{
@@ -32,9 +36,7 @@
 				}
 		}
 		
-	}
-	
-	
+	}	
 ?>
 
 <body id="back">

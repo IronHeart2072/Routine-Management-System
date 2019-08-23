@@ -62,7 +62,8 @@
 		   }
    }
    else{
-	   echo "You are not logged in yet. please go back and login again";
+	   session_destroy();
+	   header("location: ../index.php");
 	   exit();
    }
 			
@@ -86,72 +87,14 @@ document.oncontextmenu=new Function("return false")
   <div class="row">
     <div class="col-lg-4" >
     	<div class="jumbotron">		
-			<form class="form-horizontal" method="post" action="">
+			<form class="form-horizontal" method="post" action="scheduller.php">
 			<fieldset>
 
 			<!-- Form Name -->
-			<legend>Generate Schedule</legend>
-			
-			<!-- Select Basic -->
-			<div class="form-group">
-			  <label class="control-label" for="Course">Course Name</label>
-			  
-				<select id="coursefullname" name="coursefullname" class="form-control" required="">
-				<?php
-				// lists the course on drop down button course
-				$query = $link->query("SELECT DISTINCT course_full_name FROM course WHERE user_id='$user_id'"); 
-				$query->setFetchMode(PDO::FETCH_ASSOC);	
-				while($result = $query->fetch()){
-				   echo "<option value='".$result['course_full_name']."'>".$result['course_full_name']."</option>";
-				}
-				?>
-				  
-				</select>
-				
-			</div>
-
-			<!-- Text input-->
-			<div class="form-group">
-			  <label class="control-label" for="year">Year / Session</label>  
-			  <input id="year" name="year" type="text" placeholder="" class="form-control input-md" required="">
-			  <span class="help-block">Write Year e.g 2015-2016</span>  
-			</div>
-
-			<!-- Select Basic -->
-			<div class="form-group">
-			  <label class="control-label" for="semester">Select Semester</label>
-				<select id="semester" name="semester" class="form-control" required="">
-				  <option value="one">1</option>
-				  <option value="two">2</option>
-				  <option value="three">3</option>
-				  <option value="four">4</option>
-				  <option value="five">5</option>
-				  <option value="six">6</option>
-				  <option value="seven">7</option>
-				  <option value="eight">8</option>
-				</select>
-			</div>
-
-			<!-- Select Basic -->
-			<div class="form-group">
-			  <label class="control-label" for="Course">Course Code</label>
-				<select id="Coursecode" name="Coursecode" class="form-control" required="">
-				<?php
-				// lists the course on drop down button course
-				$query = $link->query("SELECT DISTINCT course_name, semester, section FROM course WHERE user_id='$user_id'"); 
-				$query->setFetchMode(PDO::FETCH_ASSOC);	
-				while($result = $query->fetch()){
-				   echo "<option value='".$result['course_name']."'>".$result['course_name']." | ".$result['semester']." | ".$result['section']."</option>";
-				}
-				?>
-				  
-				</select>
-				<span class="help-block">course, semester, section</span>  
-			</div>
-
+			<legend>View Schedule</legend>
 			<!-- Button -->
 			<div class="form-group">
-				<input type="submit" id="generate" name="generate" class="btn btn-success" value="Create Schedule">
+				<input type="submit" id="generate" name="" class="btn btn-success" value="View Schedule">
 
 			</div>
 

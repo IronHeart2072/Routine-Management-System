@@ -27,7 +27,7 @@ function schedule()
 		currentUnit = i; 
 		var courseSlack = []			//	Array to store Slack of	Courses for a specific Unit of the Routine
 
-		console.log('At WTA unit ',i);	
+		console.log('At WTA units ',i,WTA[i].time);	
 		for (var j = 0; j < courseDB.length; j++)	//	For each Course
 		{	
 			if (courseDB[j].needsSchedulling())	//	Checking if the Course needs schedulling 

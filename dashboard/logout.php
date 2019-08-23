@@ -2,7 +2,7 @@
 session_start();
 if($_SESSION['name']){	
 	session_destroy();
-	header("location:../cms/login.php");
+	header("location:../index.php");
 }
 
 ?>

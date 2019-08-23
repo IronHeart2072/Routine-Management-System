@@ -10,9 +10,9 @@
 			return $this->link;
 		}
 		
-		function registerUsers($password, $ip_address, $date, $time, $username, $email, $uname){
-			$query = $this->link->prepare("INSERT INTO users (password,ip_address,date,time,username, email, uname) VALUES(?,?,?,?,?,?,?)");
-			$values = array ($password, $ip_address, $date, $time, $username, $email, $uname);
+		function registerUsers($password,$date, $time, $username, $email, $uname){
+			$query = $this->link->prepare("INSERT INTO users (password,date,time,username, email, uname) VALUES(?,?,?,?,?,?)");
+			$values = array ($password,$date, $time, $username, $email, $uname);
 			$query->execute($values);
 			$count = $query->rowCount();
 			return $count;
@@ -36,8 +36,6 @@
 			{
 				return $rowCount;
 			}
-		}
-		
-	}
-	
+		}		
+	}	
 ?>

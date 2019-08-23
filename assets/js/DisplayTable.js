@@ -1,10 +1,9 @@
 function displayRoutine() 
 {
-	console.log('tjis nis dt')
 	var timetable = new Timetable();
 	var day;
 
-	timetable.setScope(6,19);
+	timetable.setScope(6,21);
 
 	timetable.addLocations(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']);
 
@@ -37,7 +36,7 @@ function displayRoutine()
 
 		if (routine[i].course.cid != undefined) 
 		{
-			console.log(i,routine[i].time.startHour,routine[i].time.startMin,routine[i].time.endHour,routine[i].time.endMin);
+			//console.log(i,routine[i].time.startHour,routine[i].time.startMin,routine[i].time.endHour,routine[i].time.endMin);
 			timetable.addEvent(routine[i].course.name, day, new Date(2019,9,7,routine[i].time.startHour,routine[i].time.startMin), new Date(2019,9,7,routine[i].time.endHour,routine[i].time.endMin));
 		}
 

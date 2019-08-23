@@ -7,8 +7,8 @@ if(@$_SESSION['user_id']){
    
    $path = $_SERVER['DOCUMENT_ROOT'];
    include_once("../cms/class.database.php");
-   
    include_once("navbar.php");
+   
   
 	
 	function GetFacultyInfo($user_id,$facultycode){
@@ -39,7 +39,7 @@ if(@$_SESSION['user_id']){
 	
 	if(isset($_POST['submit']))
 	{
-			$check_faculty = GetFacultyInfo($_SESSION['user_id'], $_POST['fcode']);
+		$check_faculty = GetFacultyInfo($_SESSION['user_id'], $_POST['fcode']);
 		if($check_faculty === 0){
 			$count= add_faculty($_SESSION['user_id'],$_POST['fcode'],$_POST['name'],$_POST['d'],$_POST['q']);
 			if($count){ 
@@ -50,16 +50,16 @@ if(@$_SESSION['user_id']){
 					</div>'; 
 			}
 			else{
-				echo '<div class="alert alert-block">  
+				echo '<div class="alert alert-danger fade in">  
 					<a class="close" data-dismiss="alert">X</a>  
 					<strong>Opps Error!</strong>Not Added.  
 					</div>';  
 			}
 		}
 		else{
-			echo '<div class="alert alert-block">  
+			echo '<div class="alert alert-danger fade in">  
 					<a class="close" data-dismiss="alert">X</a>  
-					<strong>Opps Error!</strong>Subject Already Exists.  
+					<strong>Opps Error!</strong>Faculty Already Exists.  
 					</div>'; 			
 		}
 		
@@ -67,7 +67,8 @@ if(@$_SESSION['user_id']){
 	
 }
 else{
-	echo "You are not logged in yet. please go back and login again";
+	session_destroy();
+	header("location: ../index.php");
 	exit();
 }
 ?>
@@ -199,7 +200,8 @@ else{
 				Facultylist($_SESSION['user_id']);
 			}
 			else{
-				echo "You are not logged in yet. Please go back and login again";
+				session_destroy();
+				header("location: ../index.php");
 			}
 		?>
 		

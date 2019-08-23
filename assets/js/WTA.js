@@ -1,5 +1,3 @@
-//	Temporary entities due to the absence of DB are represented by :- <[T]>
-
 var WTA = [];			//  Array to store Weekly Teacher Availability data
 
 //	Function to convert Hours and Minutes into Minutes
@@ -7,11 +5,13 @@ function toMin(hour = 0,min = 0)
 {
 	if (hour < 0 || hour > 24) 
 	{
-		console.log("ERROR!!! Input 'hour' range should be between 0 & 24. ") ;
+		////console.log("ERROR!!! Input 'hour' range should be between 0 & 24.") ;
+		alert("ERROR!!! Input 'hour' range should be between 0 & 24.");
 	}
 	else if (min < 0 || min > 60) 
 	{
-		console.log("ERROR!!! Input 'min' range should be between 0 & 60. ") ;
+		////console.log("ERROR!!! Input 'min' range should be between 0 & 60.") ;
+		alert("ERROR!!! Input 'min' range should be between 0 & 60.");
 	}
 	else
 	{
@@ -24,7 +24,8 @@ function fromMin(min = 0)
 {
 	if (min < 0 || min > 60 * 24) 
 	{
-		console.log("ERROR!!! Input 'min' range should be between 0 & 60. ") ;
+		////console.log("ERROR!!! Input 'min' range should be between 0 & 1440. ") ;
+		alert("ERROR!!! Input 'min' range should be between 0 & 1440. ")
 	}
 	else
 	{
@@ -33,68 +34,79 @@ function fromMin(min = 0)
 }
 
 //	Function to initialise WTA
-function initWTA(unitDuration) 
+function initWTA(unitDuration = 45,dayStartHour = 7,dayStartMin = 0,dayEndHour = 14,dayEndMin = 0) 
 {
-	var dayStartHour = 7;
-	var dayStartMin = 0;
-	var dayEndHour = 14;
-	var dayEndMin = 0;
-	
-	var startTime = toMin(dayStartHour,dayStartMin);
-	var endTime = toMin(dayEndHour,dayEndMin);
+	var dayStartHour = dayStartHour;
+	var dayStartMin = dayStartMin;
+	var dayEndHour = dayEndHour;
+	var dayEndMin = dayEndMin;
 
-	let count = 0;
+	const startTime = toMin(dayStartHour,dayStartMin);
+	const endTime = toMin(dayEndHour,dayEndMin);
 
-	for (var i = 0; i < 7; i++) 
+	for (var i = 0; i < 7; i++)			//	For 7 days of a week
 	{
-		for (var j = startTime; j <= endTime; j++) 
+		var day = i;
+		var currentTime = startTime;
+		
+		while(currentTime < endTime)
 		{
-			if (count % unitDuration === 0) 
+			if ((currentTime - startTime) % unitDuration === 0) 
 			{
-				var timeInstance = new TimeInstance(i,fromMin(j)[0],fromMin(j)[1],fromMin(j + unitDuration)[0],fromMin(j + unitDuration)[1]);
+				startHour = fromMin(currentTime)[0];
+				startMin = fromMin(currentTime)[1];
+				endHour = fromMin((currentTime + unitDuration))[0];
+				endMin = fromMin((currentTime + unitDuration))[1];
+
+				timeInstance = new TimeInstance(day,startHour,startMin,endHour,endMin);
+
 				var wtaInstance = {
 									isEmpty : true,
 									time : timeInstance,
 									availableTeachers : []
 								  }
-				WTA.push(wtaInstance);
-			}
 
-			count++;	
+				WTA.push(wtaInstance);
+
+				////console.log(day,startHour,startMin,endHour,endMin);
+			}
+			currentTime++;
 		}
+		
 	}
 }
 
 
+
 function updateWTA() 
 {
-	console.log('\n\nFunction : updateWTA()');
+	////console.log('\n\nFunction : updateWTA()');
 
 	for (var i = 0; i < WTA.length; i++) 
 	{	
-		console.log("\t\tUpdating WTA element ",i + 1,"/",WTA.length)
+		////console.log("\t\tUpdating WTA element ",i + 1,"/",WTA.length)
 		
 		for (var j = 0; j < teacherDB.length; j++) 
 		{
-			console.log("\t\t\tChecking teacherDB element ",j + 1,"/",teacherDB.length)	
+			////console.log("\t\t\tChecking teacherDB element ",j + 1,"/",teacherDB.length)	
 	
 			var teacher = teacherDB[j];
-			console.log("\t\t\tteacher = ",teacher.name);		
+			////console.log("\t\t\tteacher = ",teacher.name);		
 
 			for (var k = 0; k < teacher.freeTime.length; k++) 
 			{
-				console.log("\t\t\t\tChecking freeTime element ",k + 1,"/",teacher.freeTime.length)	
+				////console.log("\t\t\t\tChecking freeTime element ",k + 1,"/",teacher.freeTime.length)	
 			
 				if (teacher.isAvailable(WTA[i].time)) 
 				{
-					console.log('Currently Available');
+					////console.log('Currently Available');
 					WTA[i].availableTeachers.push(teacher);
 					WTA[i].availableTeachers.isEmpty = false;
-					console.log("\t\t\t\tPushed ",teacher);		
+					////console.log("\t\t\t\tPushed ",teacher);		
 				}
 				else
 				{
-					console.log('Not Currently Available');
+					////console.log('Not Currently Available');
 				
 				}
 
@@ -104,6 +116,6 @@ function updateWTA()
 
 	}
 
-	console.log("\tWeekly Teacher Availability array updated.")
+	////console.log("\tWeekly Teacher Availability array updated.")
 }
 
