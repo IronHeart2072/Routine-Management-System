@@ -124,6 +124,14 @@ $path = $_SERVER['DOCUMENT_ROOT'];
 			var total = "<?php echo $total?>";
 			var taken = "<?php echo $taken?>";
 			var slack = "<?php echo $slack?>";
+
+			total = Number(total);
+			taken = Number(taken);
+			slack = Number(slack);
+			
+			
+
+			
 			var course = new Course(cid,cname,teach,total,taken,slack);
 			course.addCourse();
 		</script>

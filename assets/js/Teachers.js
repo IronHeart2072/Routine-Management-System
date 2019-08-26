@@ -99,9 +99,9 @@ class Teacher
 
 		for (var i = 0; i < WTA.length; i++) 
 		{
-			if (!WTA[i].isEmpty) 
+			if (1) 
 			{
-				for (var j = 0; j <= WTA[i].availableTeachers.length; j++) 
+				for (var j = 0; j < WTA[i].availableTeachers.length; j++) 
 				{
 					if (WTA[i].availableTeachers[j].eid === this.eid) 
 					{

@@ -6,19 +6,14 @@ var courseDB = [];			// Array to store data from Course DataBase
 //	Class : Course
 class Course
 {
-	constructor(cid,name,teachers,totalNoOfClasses,noOfClassesTaken,currentSlack)
+	constructor(cid,name,teachers,totalNoOfClasses,noOfClassesTaken,slack)
 	{
 		this.cid = cid;
 		this.name = name;
 		this.teachers  = teachers;
 		this.totalNoOfClasses  = totalNoOfClasses;
 		this.noOfClassesTaken  = noOfClassesTaken;
-		this.currentSlack  = currentSlack;
-	}
-
-	console()
-	{
-		//console.log(this);
+		this.slack  = slack;
 	}
 
 	//	<[T]> Function to check wether an Object of Course class already exists in courseDB
@@ -53,24 +48,24 @@ class Course
 	//	Function to check if Course needs schedulling
 	needsSchedulling() 
 	{
-		//console.log('\n\nFunction : needsSchedulling()');
+		////console.log('\n\nFunction : needsSchedulling()');
 
 		if (this.noOfClassesTaken < this.totalNoOfClasses) 
 		{
-			//console.log('\ttrue');
+			////console.log('\ttrue');
 			return true;
 		}	
 		else
 		{
-			//console.log('\tfalse');
+			////console.log('\tfalse');
 			return false;
 		}
 	}
 
 	//	Function to get slack
-	getSlack(eid)
+	getSlack()
 	{
-		//console.log('\n\nFunction : getSlack()');
+		////console.log('\n\nFunction : getSlack()');
 
 		var teacher = this.teachers;
 		var totalUnits = teacher.getTotalUnits();
@@ -81,9 +76,18 @@ class Course
 		/*var deadline = totalUnits - remainingUnits;
 		var 
 */
-		var slack = -1 * ((totalUnits - remainingUnits) - (totalClasses - classesTaken));
-		console.log('\tSlack :- (',totalUnits,' - ',remainingUnits,') - (',totalClasses,' - ',classesTaken,') = ',slack)		
+		var slack = ((totalUnits - remainingUnits) - (totalClasses - classesTaken));
+		//console.log('\tSlack :- (',totalUnits,' - ',remainingUnits,') - (',totalClasses,' - ',classesTaken,') = ',slack)		
 		return slack;
+	}
+
+	//	Function to update noOfClassesTaken
+	updateClassesTaken()
+	{
+		////console.log('\n\nFunction : updateClassesTaken()');
+		var classesTaken = this.noOfClassesTaken++;
+
+		updateCourseDB(this.cid,this.cid,this.name,this.teachers,this.totalNoOfClasses,this.noOfClassesTaken,this.slack);
 	}
 }
 

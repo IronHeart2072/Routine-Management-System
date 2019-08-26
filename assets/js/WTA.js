@@ -33,6 +33,24 @@ function fromMin(min = 0)
 	}
 }
 
+function updateCourseDB(oldCid,cid,name,teachers,totalNoOfClasses,noOfClassesTaken,slack) 
+{
+	var id = oldCid;
+
+	for (var i = 0; i < courseDB.length; i++) 
+	{
+		if (id === courseDB[i].cid) 
+		{
+			courseDB[i].cid = cid;
+			courseDB[i].name = name;
+			courseDB[i].teachers = teachers;
+			courseDB[i].totalNoOfClasses = totalNoOfClasses;
+			courseDB[i].noOfClassesTaken = noOfClassesTaken;
+			courseDB[i].slack = slack;  
+		}
+	}
+}
+
 //	Function to initialise WTA
 function initWTA(unitDuration = 45,dayStartHour = 7,dayStartMin = 0,dayEndHour = 14,dayEndMin = 0) 
 {
@@ -100,8 +118,8 @@ function updateWTA()
 				if (teacher.isAvailable(WTA[i].time)) 
 				{
 					////console.log('Currently Available');
+					WTA[i].isEmpty = false;
 					WTA[i].availableTeachers.push(teacher);
-					WTA[i].availableTeachers.isEmpty = false;
 					////console.log("\t\t\t\tPushed ",teacher);		
 				}
 				else

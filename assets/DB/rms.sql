@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 21, 2019 at 07:03 AM
+-- Generation Time: Aug 23, 2019 at 10:24 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.1.31
 
@@ -44,18 +44,11 @@ CREATE TABLE `course` (
 --
 
 INSERT INTO `course` (`course_id`, `user_id`, `course_name`, `course_full_name`, `semester`, `section`, `subject_id`, `faculty_id`) VALUES
-(58, 27, 'BSc.CSIT', 'Information Technology & Computer Science', 'seven', 'a', '37', '38');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `day`
---
-
-CREATE TABLE `day` (
-  `time_id` int(30) NOT NULL,
-  `day` int(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+(58, 27, 'BSc.CSIT', 'Information Technology & Computer Science', 'seven', 'a', '37', '38'),
+(59, 28, 'BSc.CSIT', 'Information Technology & Computer Science', 'seven', 'a', '41', '39'),
+(60, 28, 'BSc.CSIT', 'Information Technology & Computer Science', 'seven', 'a', '42', '39'),
+(61, 28, 'BSc.CSIT', 'Information Technology & Computer Science', 'seven', 'a', '43', '39'),
+(62, 28, 'BSc.CSIT', 'Information Technology & Computer Science', 'seven', 'a', '43', '39');
 
 -- --------------------------------------------------------
 
@@ -77,7 +70,9 @@ CREATE TABLE `faculty` (
 --
 
 INSERT INTO `faculty` (`faculty_id`, `user_id`, `faculty_code`, `faculty_name`, `designation`, `qualification`) VALUES
-(38, 27, 'CSIT', 'Engineering', 'instructor', 'Phd');
+(38, 27, 'CSIT', 'Engineering', 'instructor', 'Phd'),
+(39, 28, 'CSIT', 'Engineering', 'Lecturer', 'Phd'),
+(40, 28, 'ECS', 'Education', 'Lecturer', 'Phd');
 
 -- --------------------------------------------------------
 
@@ -101,10 +96,15 @@ CREATE TABLE `freetime` (
 --
 
 INSERT INTO `freetime` (`user_id`, `time_id`, `teacher_id`, `day`, `start_hour`, `start_min`, `end_hour`, `end_min`) VALUES
-(27, 1, 23, 0, 6, 30, 12, 30),
-(27, 2, 24, 0, 6, 0, 8, 30),
-(27, 3, 25, 1, 9, 30, 11, 0),
-(27, 4, 25, 5, 7, 30, 11, 0);
+(28, 57, 27, 1, 7, 0, 10, 45),
+(28, 58, 27, 2, 7, 0, 10, 45),
+(28, 59, 27, 3, 7, 0, 10, 45),
+(28, 63, 28, 1, 7, 30, 9, 45),
+(28, 64, 28, 2, 8, 30, 10, 0),
+(28, 65, 28, 3, 8, 30, 10, 0),
+(28, 66, 29, 1, 10, 0, 12, 0),
+(28, 67, 29, 2, 10, 30, 12, 45),
+(28, 68, 29, 3, 10, 30, 12, 45);
 
 -- --------------------------------------------------------
 
@@ -128,10 +128,9 @@ CREATE TABLE `subject` (
 --
 
 INSERT INTO `subject` (`subject_id`, `teacher_id`, `user_id`, `subject_code`, `subject_name`, `l`, `c_taken`, `slack`) VALUES
-(37, 23, 27, 'Csc 401', 'Internet Technology', 6, 0, '0'),
-(38, 24, 27, 'Csc 402', 'Software Project Management', 5, 0, '0'),
-(39, 25, 27, 'Csc 403', 'AJP', 5, 0, '0'),
-(40, 26, 27, 'Csc 404', 'ADBMS', 5, 0, '0');
+(41, 27, 28, 'Csc 401', 'IT', 6, 0, '0'),
+(42, 28, 28, 'Csc 402', 'SPM', 5, 0, '0'),
+(43, 29, 28, 'Csc 403', 'AJP', 5, 0, '0');
 
 -- --------------------------------------------------------
 
@@ -151,10 +150,9 @@ CREATE TABLE `teacher` (
 --
 
 INSERT INTO `teacher` (`user_id`, `teacher_id`, `teacher_code`, `teacher_name`) VALUES
-(27, 23, 'KD', 'Keshav Dhami'),
-(27, 24, 'MA', 'Manish Aryal'),
-(27, 25, 'AS', 'Arjun Saud'),
-(27, 26, 'IC', 'Indra Chaudhari');
+(28, 27, 'KD', 'Keshav Dhami'),
+(28, 28, 'MA', 'Manish Aryal'),
+(28, 29, 'AS', 'Arjun Saud');
 
 -- --------------------------------------------------------
 
@@ -178,8 +176,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `password`, `ip_address`, `date`, `time`, `username`, `email`, `uname`) VALUES
-(26, '123', '::1', '2019-08-11', '05:55:20', 'sad', 's@gmail.com', 'sag'),
-(27, 'qwerty', '::1', '2019-08-20', '18:34:12', 'Manil', 'wcrecent@gmail.com', 'Sagarmatha');
+(29, '76d80224611fc919a5d54f0ff9fba446', '', '2019-08-23', '08:07:25', 'qwe', 'asd@asd.com', 'Sagarmatha'),
+(30, '7815696ecbf1c96e6894b779456d330e', '', '2019-08-23', '08:26:37', 'asd', 'asd@asd.com', 'asd');
 
 --
 -- Indexes for dumped tables
@@ -190,12 +188,6 @@ INSERT INTO `users` (`user_id`, `password`, `ip_address`, `date`, `time`, `usern
 --
 ALTER TABLE `course`
   ADD PRIMARY KEY (`course_id`);
-
---
--- Indexes for table `day`
---
-ALTER TABLE `day`
-  ADD PRIMARY KEY (`time_id`);
 
 --
 -- Indexes for table `faculty`
@@ -235,43 +227,37 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
-  MODIFY `course_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
-
---
--- AUTO_INCREMENT for table `day`
---
-ALTER TABLE `day`
-  MODIFY `time_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `course_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `faculty`
 --
 ALTER TABLE `faculty`
-  MODIFY `faculty_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `faculty_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `freetime`
 --
 ALTER TABLE `freetime`
-  MODIFY `time_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `time_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `subject`
 --
 ALTER TABLE `subject`
-  MODIFY `subject_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `subject_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `teacher`
 --
 ALTER TABLE `teacher`
-  MODIFY `teacher_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `teacher_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `user_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
